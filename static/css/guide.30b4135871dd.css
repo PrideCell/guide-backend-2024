@@ -56,13 +56,13 @@
   }
  
   #menu{
-    font-family: cursive !important;
+    font-family: roboto !important;
   }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: cursive;
+    font-family: roboto;
     height: 100vh;
     background-blend-mode: darken;
     overflow-x: hidden;
@@ -333,7 +333,7 @@ footer a:focus {
    }
 <<<<<<< HEAD
    body {
-    font-family: cursive;
+    font-family: roboto;
 =======
    .container-2 input#search{
     width: 50px;
@@ -343,7 +343,7 @@ footer a:focus {
 } 
 @media screen and (max-width: 600px) {
     body {
-      font-family: cursive;
+      font-family: roboto;
     }
     .blackbox input[type=text] {
       float: none;

@@ -86,6 +86,8 @@ INSTALLED_APPS = [
     'storages',
     'whitenoise.runserver_nostatic',
     'verify_email',  # sending email verification
+    'rest_framework',
+    'livereload'
     # 'django_extensions',
 ]
 
@@ -99,6 +101,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 3rd party
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    'livereload.middleware.LiveReloadScript' 
 ]
 
 ROOT_URLCONF = 'guide_project.urls'
@@ -125,13 +128,18 @@ WSGI_APPLICATION = 'guide_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+
+# DATABASES ={
+#     "default" : dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 # Development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'GUIDE-SELECTION',
-        'USER': 'techboizs',
-        'PASSWORD': 'AAd!tyAA$ravi',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -264,4 +272,4 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # AWS_STORAGE_BUCKET_NAME = 's3-django-test-bucket'
 # Logout On Closing
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

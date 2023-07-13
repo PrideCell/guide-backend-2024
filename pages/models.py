@@ -31,6 +31,7 @@ class Guide(models.Model):
     email = models.CharField(max_length=200)
     myImage = CloudinaryField('image')
     # myImage = models.ImageField(upload_to=guide_directory_path)
+    # myImage = models.CharField(max_length=255)
     vacancy = models.IntegerField(default=7)
 
     def __str__(self):

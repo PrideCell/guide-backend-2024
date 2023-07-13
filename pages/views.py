@@ -18,7 +18,15 @@ from guide_project.storages_backends import MediaStorage
 
 
 def home(request):
-    return render(request, 'Home/home.html')
+    user= request.user
+    is_guide=False
+    if user.is_authenticated:
+        guide = Guide.objects.filter(email=
+                                     user.email)
+        if guide:
+            is_guide = True
+        
+    return render(request, 'Home/home.html', context={'is_guide':is_guide})
 
 
 def no_of_stud(request):
@@ -43,12 +51,12 @@ def guides(request):
 
         serial_no = int(serial_no)
 
-        if serial_no >= 1 and serial_no <= 52:
-            vacancy = 7
-        elif serial_no >= 53 and serial_no <= 79:
-            vacancy = 4
-        else:
-            vacancy = 3
+    #    if serial_no >= 1 and serial_no <= 52:
+    #         vacancy = 7
+    #     elif serial_no >= 53 and serial_no <= 79:
+    #         vacancy = 4
+    #     else:
+    #         vacancy = 3 
 
         if Guide.objects.filter(serial_no=serial_no).exists():
             messages.error(
