@@ -760,7 +760,7 @@ def doc_upload(request):
                 return render(request, 'upload_docs/docs.html', context)
         else:
             messages.error(
-                request, "You're not in the shortlisted team list to upload your documents!")
+                request, "Kindly wait until you are further instructed to upload documents")
             return redirect('team-dashboard')
     else:
         messages.error(request, "You're not logged in!")

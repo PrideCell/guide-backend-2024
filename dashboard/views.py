@@ -82,7 +82,7 @@ def guide_profile(request):
 
         return render(request, 'dashboard/staff_profile.html', context)
     else:
-        messages.error(request, "You're not a guide to!")
+        messages.error(request, "You're not a guide !")
         auth.logout(request)
         return redirect('login')
 
