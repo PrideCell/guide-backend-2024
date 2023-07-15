@@ -102,7 +102,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 3rd party
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    'livereload.middleware.LiveReloadScript' 
+    'livereload.middleware.LiveReloadScript'
 ]
 
 ROOT_URLCONF = 'guide_project.urls'
@@ -128,7 +128,6 @@ WSGI_APPLICATION = 'guide_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 
 
 # DATABASES ={
@@ -159,14 +158,14 @@ WSGI_APPLICATION = 'guide_project.wsgi.application'
 
 # Production DB to be used for railway personal
 
-DATABASE_URL = "postgresql://postgres:M5IdDWcXIAhyt06Sh0w0@containers-us-west-132.railway.app:6989/railway"
+DATABASE_URL = "postgresql://postgres:Sw4rMcYObFabLSxPEEq3@containers-us-west-170.railway.app:6238/railway"
 
-'''DATABASES = {
-    "default": dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=None),
-}'''
 DATABASES = {
-    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=None),
+    "default": dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=None),
 }
+'''DATABASES = {
+    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=None),
+}'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
