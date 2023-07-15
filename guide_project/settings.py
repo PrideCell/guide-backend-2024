@@ -160,12 +160,22 @@ WSGI_APPLICATION = 'guide_project.wsgi.application'
 
 DATABASE_URL = "postgresql://postgres:Sw4rMcYObFabLSxPEEq3@containers-us-west-170.railway.app:6238/railway"
 
-DATABASES = {
-    "default": dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=None),
-}
+# DATABASES = {
+#     "default": dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=None),
+# }
 '''DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=None),
 }'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'GUIDE-TEST',
+        'USER': 'techboizs',
+        'PASSWORD': 'AAd!tyAA$ravi',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
