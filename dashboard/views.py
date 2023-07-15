@@ -250,7 +250,7 @@ def ppt_approve(request, id):
         else:
             team.ppt_approved = True
         team.save()
-        return HttpResponse('Sucess')   
+        return HttpResponse('Sucess')
 
 # For checkbox
 
@@ -286,3 +286,20 @@ def payment_status(request, id):
             team.payment_done = True
     team.save()
     return HttpResponse('sucess')
+
+
+def guide_profile_pic(request):
+    user = request.user
+    print('Inside Guide_profile Pic')
+    if user.is_authenticated:
+        print('INSIDE POST')
+        guide = Guide.objects.filter(email=user.email).get()
+        if request.method == 'POST':
+            print('INSIDE POST')
+            myImage = request.FILES['myImage']
+            guide.myImage = myImage
+            guide.save()
+            return redirect('guide-profile')
+    else:
+        messages.error(request, "You're not logged In!")
+    return render(request, 'adminregister/aform.html')

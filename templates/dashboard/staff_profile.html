@@ -39,6 +39,12 @@
                         <span class="item">Home</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{% url 'guide-profile-pic' %}" class="active">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="item">Upload Picture</span>
+                    </a>
+                </li>
                 <!-- <li>
                     <a href="#">
                         <span class="icon"><i class="fas fa-database"></i></span>
@@ -51,6 +57,7 @@
                         <span class="item"> Latest Events</span>
                     </a>
                 </li> -->
+                
                 {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'logout' %}">

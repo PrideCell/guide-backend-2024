@@ -15,6 +15,8 @@ urlpatterns = [
     path('guide-dashboard/<str:teamID>',
          views.guide_dashboard, name='guide-dashboard'),
     path('guide-profile', views.guide_profile, name='guide-profile'),
+    path('guide-profile-pic', views.guide_profile_pic, name='guide-profile-pic'),
+
 
     # For toggles
     path('guide-approve/<str:id>/',

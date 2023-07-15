@@ -135,7 +135,7 @@ WSGI_APPLICATION = 'guide_project.wsgi.application'
 #     "default" : dj_database_url.parse(os.environ.get('DATABASE_URL'))
 # }
 # Development
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
@@ -144,7 +144,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}
+}'''
 '''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -164,9 +164,9 @@ DATABASE_URL = "postgresql://postgres:M5IdDWcXIAhyt06Sh0w0@containers-us-west-13
 '''DATABASES = {
     "default": dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=None),
 }'''
-# DATABASES = {
-#     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=None),
-# }
+DATABASES = {
+    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=None),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
