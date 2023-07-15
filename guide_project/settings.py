@@ -62,7 +62,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://guideselection.herokuapp.com/',
     'https://guide-backend-production.up.railway.app',
     'https://cse-projectregistration.co.in',
-    'https://guide-backend-production-d238.up.railway.app'
+    'https://guide-backend-production-d238.up.railway.app',
+     'https://guide-backend-2024-production.up.railway.app'
 ]
 
 # Application definition
@@ -86,8 +87,6 @@ INSTALLED_APPS = [
     'storages',
     'whitenoise.runserver_nostatic',
     'verify_email',  # sending email verification
-    'rest_framework',
-    'livereload'
     # 'django_extensions',
     # 'gdstorage',
 ]
@@ -102,7 +101,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 3rd party
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    'livereload.middleware.LiveReloadScript'
+    
 ]
 
 ROOT_URLCONF = 'guide_project.urls'
