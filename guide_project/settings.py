@@ -169,11 +169,11 @@ DATABASE_URL = "postgresql://postgres:Sw4rMcYObFabLSxPEEq3@containers-us-west-17
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'GUIDE-TEST',
-        'USER': 'techboizs',
-        'PASSWORD': 'AAd!tyAA$ravi',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'qgIacOVZWyoeqPOXpeT5',
+        'HOST': 'containers-us-west-116.railway.app',
+        'PORT': '7613',
     }
 }
 
