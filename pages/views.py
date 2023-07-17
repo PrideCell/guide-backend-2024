@@ -84,7 +84,7 @@ def mail1(request):
         email_2 = request.POST['email_2']
 
         no = randrange(1000, 9999)
-        print("2nd MEMBER OTP IS: ", no)
+        # print("2nd MEMBER OTP IS: ", no)
         if Otp_Two.objects.filter(user_email=email_2).exists():
             t = Otp_Two.objects.filter(user_email=email_2)
             t.delete()
@@ -166,7 +166,7 @@ def project_details_1(request):
         student_1_email = curr_user.email
 
         user = User.objects.get(username=curr_user.username)
-        print("TYPE OF user.id: ", type(user.id))
+        # print("TYPE OF user.id: ", type(user.id))
 
         if Temp_Team.objects.filter(student_1_email=curr_user.email).exists():
             obj = Temp_Team.objects.filter(
@@ -187,7 +187,7 @@ def project_details_1(request):
             student_1_email=student_1_email,
             student_1_no=student_1_no
         )
-        print('temp_team: ', temp_team.project_name)
+        # print('temp_team: ', temp_team.project_name)
         temp_team.save()
 
         context = {
@@ -249,7 +249,7 @@ def project_details_2(request):
         student_2_name = first_name_2 + ' ' + last_name_2
 
         user = User.objects.get(username=curr_user.username)
-        print("TYPE OF user.id: ", type(user.id))
+        # print("TYPE OF user.id: ", type(user.id))
 
         if Team.objects.filter(reg_no_1=reg_no_1).exists():
             messages.error(
@@ -513,7 +513,7 @@ def guide_selected(request, id):
         'id': id,
         'user': user,
     }
-    print("TEAM MEM: ", temp_team.no_of_members)
+    # print("TEAM MEM: ", temp_team.no_of_members)
     if temp_team.no_of_members == '2':
         print('CONFIRM 2')
         return render(request, 'confirmation_2/confirmation.html', context)
@@ -540,7 +540,7 @@ def search(request):
         if name:
             print("INSIDE NAME IF..")
             queryset_list = queryset_list.filter(name__icontains=name)
-            print(queryset_list)
+            # print(queryset_list)
     context = {
         'guides': queryset_list,
     }
@@ -589,7 +589,7 @@ def reset_password(request):
             # Check for user existence
             temp, id = teamID.split('-')
             # temp = int(teamID)
-            print('id is: ', id)
+            # print('id is: ', id)
             if Guide.objects.filter(emp_id=id).exists():
                 if User.objects.filter(username=email).exists():
                     user = User.objects.filter(username=email).get()
@@ -628,9 +628,9 @@ def doc_upload(request):
                 # documents/CSE-001/filename.ppt
                 file_path_bucket = 'documents/{0}/'.format(
                     request.user.username)
-                print('Path is: ', file_path_bucket)
+                # print('Path is: ', file_path_bucket)
                 # Below line always returns False
-                print('Check Dir', media_storage.exists(file_path_bucket))
+                # print('Check Dir', media_storage.exists(file_path_bucket))
                 if media_storage.exists(file_path_bucket):
                     media_storage.delete(file_path_bucket)
 
@@ -642,7 +642,7 @@ def doc_upload(request):
 
                 # UN-COMMENT THE BELOW ONCE FINISHED WITH THE DROP DOWN PART IN THE DOC UPLOAD PAGE (upload_docs/docs.html) TO MAKE THE CHANGES AFFECT IN THE BACKEND
                 type = request.POST['type']
-                print('FILES value: ', request.FILES)
+                # print('FILES value: ', request.FILES)
 
                 if request.FILES:
                     # ppt
@@ -747,7 +747,7 @@ def doc_upload(request):
 
                 team.type = type
                 team.save()
-                print('Type of project is: ', team.type)
+                # print('Type of project is: ', team.type)
 
                 # auth.logout(request)
                 return redirect('submitted')

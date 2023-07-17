@@ -38,7 +38,7 @@ def guide_dashboard(request, teamID):
 
         return redirect('guide-dashboard', teamID)
 
-    print('Team is: ', team.teamID)
+    # print('Team is: ', team.teamID)
     if Guide.objects.filter(email=user.email).exists():
         guide = Guide.objects.filter(email=user.email).get()
 
@@ -131,7 +131,7 @@ def update_project(request, id):
     team = Team.objects.filter(teamID=id).get()
     if request.method == 'POST':
         # print('TYPE OF request values: ', type(request.POST['project_name']))
-        print('VALUE OF request values: ', request.POST['project_name'])
+        # print('VALUE OF request values: ', request.POST['project_name'])
 
         if request.POST.get('project_name'):
             print('inside project if')

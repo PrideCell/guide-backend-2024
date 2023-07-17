@@ -79,8 +79,8 @@ def register(request):
         ConfirmPassword = request.POST['password2']
         temp = email.split('@')
         form = GuideSignUpForm(request.POST)
-        print('Form is: ', form.data)
-        print('Password: ', password)
+        # print('Form is: ', form.data)
+        # print('Password: ', password)
         if temp[1] == 'gmail.com' or temp[1] == 'yahoo.in' or temp[1] == 'hotmail.com':
 
             if password == ConfirmPassword:
@@ -155,9 +155,9 @@ def register(request):
 
 
 def login(request):
-    print('INSIDE LOGIN')
+    # print('INSIDE LOGIN')
     if request.method == 'POST':
-        print('INSIDE POST LOGIN()')
+        # print('INSIDE POST LOGIN()')
         user_name = request.POST['email']
         password = request.POST['password']
         if not User.objects.filter(username=user_name).exists():
@@ -178,7 +178,7 @@ def login(request):
                     print('INSIDE profile page if')
                     auth.login(request, user)
                     team = Team.objects.filter(teamID=user.username).get()
-                    print('team is: ', team.teamID)
+                    # print('team is: ', team.teamID)
                     return redirect('team-dashboard')
                 auth.login(request, user)
                 user = request.user
@@ -330,7 +330,7 @@ def password_reset_confirm(request, uidb64, token):
 
             # Check for user existence
             # temp = int(teamID)
-            print('id is: ', id)
+            # print('id is: ', id)
             if Guide.objects.filter(email=user.email).exists():
                 if User.objects.filter(username=user.email).exists():
                     user = User.objects.filter(email=user.email).get()
