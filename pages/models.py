@@ -35,7 +35,10 @@ class Guide(models.Model):
     vacancy = models.IntegerField(default=7)
 
     def __str__(self):
-        return self.name
+        if not self.name:
+            return self.name
+        else:
+            return self.serial_no
 
 
 def user_directory_path(instance, filename):
