@@ -29,9 +29,9 @@ class Guide(models.Model):
     domain_2 = models.CharField(max_length=200, blank=True, null=True)
     domain_3 = models.CharField(max_length=200, blank=True, null=True)
     email = models.CharField(max_length=200)
-    # myImage = CloudinaryField('image',null=True, blank=True)
+    myImage = CloudinaryField('image',null=True, blank=True)
     # myImage = models.ImageField(upload_to=guide_directory_path)
-    myImage = models.CharField(max_length=255)
+    # myImage = models.CharField(max_length=255)
     vacancy = models.IntegerField(default=7)
 
     def __str__(self):
