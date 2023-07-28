@@ -21,11 +21,11 @@ def credit_directory_path(instance, filename):
 
 
 class Guide(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,blank=True, null=True)
     emp_id = models.IntegerField(default=1)
     serial_no = models.IntegerField(primary_key=True)
-    designation = models.CharField(max_length=100)
-    domain_1 = models.CharField(max_length=200)
+    designation = models.CharField(max_length=100,blank=True, null=True)
+    domain_1 = models.CharField(max_length=200,blank=True, null=True)
     domain_2 = models.CharField(max_length=200, blank=True, null=True)
     domain_3 = models.CharField(max_length=200, blank=True, null=True)
     email = models.CharField(max_length=200)

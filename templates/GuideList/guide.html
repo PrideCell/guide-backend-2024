@@ -57,17 +57,17 @@
                                 </td>
                                 <td align="center">
                                     <img src="{{ guide.myImage.url }}" height="150px" width="150px"> <br>
-                                    {{ guide.name }}
+                                    {{ guide.name|upper }}
                                     <br>
-                                    {{ guide.designation }}
+                                    {{ guide.designation|upper }}
                                     <br>
                                     {{ guide.email }}
                                 </td>
                                 <td>
                                     <ul>
-                                        <li>{{ guide.domain_1 }}</li>
-                                        <li>{{ guide.domain_2 }}</li>
-                                        <li>{{ guide.domain_3 }}</li>
+                                        <li>{{ guide.domain_1|upper }}</li>
+                                        <li>{{ guide.domain_2|upper }}</li>
+                                        <li>{{ guide.domain_3|upper}}</li>
                                     </ul>
                                 </td>
                                 <td align="" class="vac">{{ guide.vacancy }}</td>
@@ -89,17 +89,17 @@
                                 <td align="center">
                                     <img src="{{ guide.myImage.url}}" height="150px" width="150px"> 
                                     <br>
-                                    {{ guide.name }}
+                                    {{ guide.name|upper }}
                                     <br>
-                                    {{ guide.designation }}
+                                    {{ guide.designation|upper }}
                                     <br>
                                     {{ guide.email }}
                                 </td>
                                 <td>
                                     <ul>
-                                        <li>{{ guide.domain_1 }}</li>
-                                        <li>{{ guide.domain_2 }}</li>
-                                        <li>{{ guide.domain_3 }}</li>
+                                        <li>{{ guide.domain_1|upper }}</li>
+                                        <li>{{ guide.domain_2|upper }}</li>
+                                        <li>{{ guide.domain_3|upper }}</li>
                                     </ul>
                                 </td>
                                 <td align="" class="vac">{{ guide.vacancy }}</td>
