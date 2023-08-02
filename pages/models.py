@@ -21,15 +21,15 @@ def credit_directory_path(instance, filename):
 
 
 class Guide(models.Model):
-    name = models.CharField(max_length=100,blank=True, null=True)
+    name = models.CharField(max_length=100)
     emp_id = models.IntegerField(default=1)
     serial_no = models.IntegerField(primary_key=True)
-    designation = models.CharField(max_length=100,blank=True, null=True)
-    domain_1 = models.CharField(max_length=200,blank=True, null=True)
+    designation = models.CharField(max_length=100)
+    domain_1 = models.CharField(max_length=200)
     domain_2 = models.CharField(max_length=200, blank=True, null=True)
     domain_3 = models.CharField(max_length=200, blank=True, null=True)
     email = models.CharField(max_length=200)
-    myImage = CloudinaryField('image',null=True, blank=True)
+    myImage = CloudinaryField('image')
     # myImage = models.ImageField(upload_to=guide_directory_path)
     # myImage = models.CharField(max_length=255)
     vacancy = models.IntegerField(default=7)
@@ -37,8 +37,7 @@ class Guide(models.Model):
     def __str__(self):
         if self.name:
             return self.name
-        else:
-            return str(self.serial_no)
+        
 
 
 def user_directory_path(instance, filename):
