@@ -50,7 +50,7 @@ ALLOWED_HOSTS = [
     'cse-projectregistration.co.in',
     'https://guide-backend-production.up.railway.app',
     'guide-backend-production.up.railway.app',
-    'https://guide-portal.up.railway.app/'
+    'guide-portal.up.railway.app',
     '*',
 ]
 
@@ -60,7 +60,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000/pride-cell',
     'https://cse-projectregistration.co.in',
      'https://guide-backend-2024-production.up.railway.app',
-     'https://guide-portal.up.railway.app/'
+     'https://guide-portal.up.railway.app'
 ]
 
 # Application definition
