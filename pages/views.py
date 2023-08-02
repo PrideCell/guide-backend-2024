@@ -477,6 +477,10 @@ def guide_selected(request, id):
 
         user.save()
         if team.no_of_members == '2':
+            if guide_inst.vacancy == 0:
+                return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
+            guide_inst.vacancy -= 1
+            guide_inst.save()
             send_mail(
                 'CONFIRMATION FOR FINAL YEAR PROJECT REGISTRATION',
                 'Hi, Thank you for registering here is your details:' + '\n\nTeam ID: ' + team.teamID + '\n\nProject Name: ' + team.project_name + '\n\nProject Description: ' + team.project_description + '\n\nGuide Name: ' + guide_inst.name + '\n\nGuide Email: ' + guide_inst.email + '\n\nNo. of members: ' + team.no_of_members + '\n\nMembers: ' + team.student_1_name + ' and '+team.student_2_name +
@@ -488,10 +492,12 @@ def guide_selected(request, id):
             obj.delete()
             temp_team.delete()
             team.save()
-            guide_inst.vacancy -= 1
-            guide_inst.save()
 
         else:
+            if guide_inst.vacancy == 0:
+                return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
+            guide_inst.vacancy -= 1
+            guide_inst.save()
             send_mail(
                 'CONFIRMATION FOR FINAL YEAR PROJECT REGISTRATION',
                 'Hi, Thank you for registering here is your details:' + '\n\nTeam ID: ' + team.teamID + '\n\nProject Name: ' + team.project_name + '\n\nProject Description: ' + team.project_description + '\n\nGuide Name: ' + guide_inst.name + '\n\nGuide Email: ' + guide_inst.email + '\n\nNo. of members: ' + team.no_of_members + '\n\nMembers: ' + team.student_1_name +
@@ -501,8 +507,6 @@ def guide_selected(request, id):
                 fail_silently=False,
             )
             team.save()
-            guide_inst.vacancy -= 1
-            guide_inst.save()
             temp_team.delete()
         # auth.logout(request)
         return redirect('team-dashboard')
