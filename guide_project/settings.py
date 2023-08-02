@@ -260,7 +260,7 @@ REQUEST_NEW_EMAIL_TEMPLATE = "verify/req_new_email.html"
 LINK_EXPIRED_TEMPLATE = 'verify/link_expired.html'
 NEW_EMAIL_SENT_TEMPLATE = 'verify/acc_act_email_sent.html'
 MAX_RETRIES = 10
-EXPIRE_AFTER = "1h"
+EXPIRE_AFTER = "10h"
 SUBJECT = 'ACCOUNT VERIFICATION FOR PROJECT REGISTRATION'
 
 
