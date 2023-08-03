@@ -18,15 +18,14 @@ from guide_project.storages_backends import MediaStorage
 
 
 def home(request):
-    user= request.user
-    is_guide=False
+    user = request.user
+    is_guide = False
     if user.is_authenticated:
-        guide = Guide.objects.filter(email=
-                                     user.email)
+        guide = Guide.objects.filter(email=user.email)
         if guide:
             is_guide = True
-        
-    return render(request, 'Home/home.html', context={'is_guide':is_guide})
+
+    return render(request, 'Home/home.html', context={'is_guide': is_guide})
 
 
 def no_of_stud(request):
@@ -56,7 +55,7 @@ def guides(request):
     #     elif serial_no >= 53 and serial_no <= 79:
     #         vacancy = 4
     #     else:
-    #         vacancy = 3 
+    #         vacancy = 3
 
         if Guide.objects.filter(serial_no=serial_no).exists():
             messages.error(
@@ -76,6 +75,7 @@ def guides(request):
 def submitted(request):
     # auth.logout(request)
     return render(request, 'submitted.html')
+
 
 def mail1(request):
     user = request.user
@@ -300,7 +300,7 @@ def select_guide(request):
 
         return HttpResponse('YOU ARE NOT ALLOWED HERE!')
 
-    guides = Guide.objects.order_by('serial_no') # object
+    guides = Guide.objects.order_by('serial_no')  # object
     if request.method == 'POST':
 
         return redirect('guide-selected')
@@ -471,14 +471,14 @@ def guide_selected(request, id):
 
         team.guide = guide_inst.name
         team.guide_email = guide_inst.email
-        new_username = "CSE-%04d" % (team.id) # CSE-001, CSE-002, ....
+        new_username = "CSE-%04d" % (team.id)  # CSE-001, CSE-002, ....
         team.teamID = new_username
         user.username = new_username
 
-        user.save()
         if team.no_of_members == '2':
             if guide_inst.vacancy == 0:
                 return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
+            user.save()
             guide_inst.vacancy -= 1
             guide_inst.save()
             send_mail(
@@ -496,6 +496,7 @@ def guide_selected(request, id):
         else:
             if guide_inst.vacancy == 0:
                 return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
+            user.save()
             guide_inst.vacancy -= 1
             guide_inst.save()
             send_mail(
