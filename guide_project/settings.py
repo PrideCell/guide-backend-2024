@@ -59,8 +59,8 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000/',
     'http://127.0.0.1:8000/pride-cell',
     'https://cse-projectregistration.co.in',
-     'https://guide-backend-2024-production.up.railway.app',
-     'https://guide-portal.up.railway.app'
+    'https://guide-backend-2024-production.up.railway.app',
+    'https://guide-portal.up.railway.app'
 ]
 
 # Application definition
@@ -98,7 +98,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 3rd party
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    
+
 ]
 
 ROOT_URLCONF = 'guide_project.urls'
@@ -243,6 +243,8 @@ cloudinary.config(
 # Email Configuration
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_PORT = 2525
+EMAIL_FROM = os.environ.get('EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 # EMAIL_HOST_USER = 'guideproject2023@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
