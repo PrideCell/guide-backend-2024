@@ -243,8 +243,8 @@ cloudinary.config(
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Email Configuration
-EMAIL_HOST = 'smtp.elasticemail.com'
-EMAIL_PORT = 2525
+EMAIL_HOST = 'smtp25.elasticemail.com'
+EMAIL_PORT = 587
 EMAIL_FROM = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 DEFAULT_FROM_EMAIL = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
