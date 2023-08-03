@@ -61,7 +61,8 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000/pride-cell',
     'https://cse-projectregistration.co.in',
     'https://guide-backend-2024-production.up.railway.app',
-    'https://guide-portal.up.railway.app'
+    'https://guide-portal.up.railway.app',
+    'http://guide-portal-new.up.railway.app'
 ]
 
 # Application definition
