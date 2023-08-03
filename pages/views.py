@@ -363,6 +363,8 @@ def temp_team_2(request):
 
             if Guide.objects.filter(email=guide_email).exists():
                 guide = Guide.objects.filter(email=guide_email).get()
+                if guide.vacancy == 0:
+                    redirect('select-guide')
                 temp_team.save()
                 context = {
                     'id': guide.serial_no,
@@ -415,6 +417,8 @@ def temp_team_1(request):
 
             if Guide.objects.filter(email=guide_email).exists():
                 guide = Guide.objects.filter(email=guide_email).get()
+                if guide.vacancy == 0:
+                    redirect('select-guide')
                 temp_team.save()
                 context = {
                     'id': guide.serial_no,
