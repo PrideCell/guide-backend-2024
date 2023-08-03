@@ -471,7 +471,7 @@ def guide_selected(request, id):
 
         team.guide = guide_inst.name
         team.guide_email = guide_inst.email
-        new_username = "CSE-%03d" % (team.id) # CSE-001, CSE-002, ....
+        new_username = "CSE-%04d" % (team.id) # CSE-001, CSE-002, ....
         team.teamID = new_username
         user.username = new_username
 
