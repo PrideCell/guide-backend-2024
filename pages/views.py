@@ -4,7 +4,7 @@ from .models import Team, Credit
 from openpyxl import Workbook
 from random import randrange
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from guide_project.settings import EMAIL_HOST_USER
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
@@ -477,7 +477,8 @@ def guide_selected(request, id):
 
         if team.no_of_members == '2':
             if guide_inst.vacancy == 0:
-                return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
+                return HttpResponseRedirect('/select-guide/')
+                # return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
             user.save()
             guide_inst.vacancy -= 1
             guide_inst.save()
@@ -495,7 +496,8 @@ def guide_selected(request, id):
 
         else:
             if guide_inst.vacancy == 0:
-                return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
+                return HttpResponseRedirect('/select-guide/')
+                # return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
             user.save()
             guide_inst.vacancy -= 1
             guide_inst.save()
