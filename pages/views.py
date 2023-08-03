@@ -460,7 +460,10 @@ def guide_selected(request, id):
     guide_inst = Guide.objects.get(serial_no=id)
     user = request.user
     # you can get teamID from username as both are same.
-    temp_team = Temp_Team.objects.get(student_1_email=user.email)
+    try:
+        temp_team = Temp_Team.objects.get(student_1_email=user.email)
+    except:
+        return redirect('/accounts/login')
 
     temp_team.guide = guide_inst.name
     temp_team.guide_email = guide_inst.email
