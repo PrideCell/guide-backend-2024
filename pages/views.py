@@ -125,10 +125,15 @@ def verify1(request):
     if request.method == 'POST':
         otp = request.POST['otp']
         if Otp_Two.objects.filter(temp_email=request.user.email).exists():
-            g_otp = Otp_Two.objects.filter(temp_email=request.user.email).first()
+            g_otp = Otp_Two.objects.filter(
+                temp_email=request.user.email).first()
+        else:
+            return render(request, 'Register/verify1.html')
 
         if otp == g_otp.otp:
             return redirect('project-details-2')
+        else:
+            render(request, 'Register/verify1.html')
     else:
         return render(request, 'Register/verify1.html')
 
@@ -206,7 +211,8 @@ def project_details_1(request):
 def project_details_2(request):
     curr_user = request.user
     guides = Guide.objects.order_by('serial_no')
-    student_2_email = Otp_Two.objects.filter(temp_email=curr_user.email).first()
+    student_2_email = Otp_Two.objects.filter(
+        temp_email=curr_user.email).first()
 
     if Team.objects.filter(teamID=curr_user.username).exists():
         is_team = Team.objects.filter(teamID=curr_user.username).get()
