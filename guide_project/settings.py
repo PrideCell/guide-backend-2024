@@ -51,6 +51,7 @@ ALLOWED_HOSTS = [
     'https://guide-backend-production.up.railway.app',
     'guide-backend-production.up.railway.app',
     'guide-portal.up.railway.app',
+    'guide-portal-new.up.railway.app',
     '*',
 ]
 
