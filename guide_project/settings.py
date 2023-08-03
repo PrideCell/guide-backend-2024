@@ -245,8 +245,8 @@ cloudinary.config(
 # Email Configuration
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_PORT = 2525
-EMAIL_FROM = os.environ.get('EMAIL_HOST_USER')
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+EMAIL_FROM = 'GUIDE PROJECT <guideproject2023@gmail.com>'
+DEFAULT_FROM_EMAIL = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 # EMAIL_HOST_USER = 'guideproject2023@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
