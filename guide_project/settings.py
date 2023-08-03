@@ -62,7 +62,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://cse-projectregistration.co.in',
     'https://guide-backend-2024-production.up.railway.app',
     'https://guide-portal.up.railway.app',
-    'http://guide-portal-new.up.railway.app'
+    'https://guide-portal-new.up.railway.app'
 ]
 
 # Application definition
