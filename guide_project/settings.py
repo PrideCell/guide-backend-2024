@@ -284,3 +284,5 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # Logout On Closing
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
