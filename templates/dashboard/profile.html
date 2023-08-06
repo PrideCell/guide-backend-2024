@@ -205,6 +205,7 @@
                                 <div class="card text-center sidebar">
                                     <div class="card-body">
                                         <form action="{% url 'update-profile-2' id=team.teamID %}" method="POST">
+                                            {% csrf_token %}
                                             <h4>Student 2</h4>
                                             <br>
                                             <div class="d-flex align-items">

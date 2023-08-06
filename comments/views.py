@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from pages.models import Team, Guide
 from .models import Comment
+from django.contrib import messages
 # Create your views here.
 
 
 def comments(request, id):
     print('Inside comments()')
     user = request.user
+    if not user.is_authenticated:
+        messages.error(request, "You're not logged In!")
+        return ('login')
     team = Team.objects.filter(teamID=id).get()
     if Guide.objects.filter(email=user.email).exists():
         is_guide = True

@@ -155,31 +155,32 @@ def register(request):
 
 
 def login(request):
-    # print('INSIDE LOGIN')
+
     if request.method == 'POST':
-        # print('INSIDE POST LOGIN()')
+
         user_name = request.POST['email']
         password = request.POST['password']
         if not User.objects.filter(username=user_name).exists():
             messages.error(request, "User does not exist!")
             return redirect('login')
-        # user = User.objects.filter(username=user_name).get()
+
         user = auth.authenticate(username=user_name, password=password)
+
         if user is not None:
             print('User is: ', user)
             if user.is_staff == True:
                 return redirect('export')
             if Guide.objects.filter(email=user_name).exists():
-                # guide = Guide.objects.filter(email=user_name).get()
                 auth.login(request, user)
                 return redirect('guide-profile')
             if user is not None:
                 if Team.objects.filter(teamID=user.username).exists():
-                    print('INSIDE profile page if')
+
                     auth.login(request, user)
                     team = Team.objects.filter(teamID=user.username).get()
-                    # print('team is: ', team.teamID)
+
                     return redirect('team-dashboard')
+                
                 auth.login(request, user)
                 user = request.user
 
@@ -212,18 +213,6 @@ def login(request):
                         team.delete()
                         return render(request, 'no_of_stud/no_of_stud.html')
 
-                # if Team.objects.filter(teamID=user.username).exists():
-                #     print('INSIDE LINE 312 IF: ')
-                #     if User.objects.filter(username=user_name).exists():
-                #         print('INSIDE LINE 314 IF: ')
-                #         if user.is_active == False:
-                #             print('INSIDE LINE 316 IF: ')
-                #             auth.logout(request)
-                #             messages.info(
-                #                 request, 'Your team is already registered. Please contact project co-ordinator!')
-                #             return render(request, 'Login/login.html')
-                #         else:
-                #             return redirect('retitle')
                 return render(request, 'no_of_stud/no_of_stud.html')
             else:
                 messages.error(request, 'Invalid Credentials')

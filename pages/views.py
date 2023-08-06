@@ -63,7 +63,7 @@ def guides(request):
             return redirect('guides')
         else:
             guide = Guide(serial_no=serial_no, emp_id=emp_id, designation=designation, name=name, domain_1=domain_1, domain_2=domain_2,
-                          domain_3=domain_3, email=email, myImage=myImage, vacancy=vacancy)
+                          domain_3=domain_3, email=email, myImage=myImage)
 
             guide.save()
         return redirect('login')
@@ -73,238 +73,254 @@ def guides(request):
 
 
 def submitted(request):
-    # auth.logout(request)
+    auth.logout(request)
     return render(request, 'submitted.html')
 
 
 def mail1(request):
     user = request.user
-    if request.method == 'POST':
-        # email_1 = request.POST['email_1']
-        email_2 = request.POST['email_2']
+    if user.is_authenticated:
+        if request.method == 'POST':
+            # email_1 = request.POST['email_1']
+            email_2 = request.POST['email_2']
 
-        no = randrange(1000, 9999)
-        # print("2nd MEMBER OTP IS: ", no)
-        if Otp_Two.objects.filter(user_email=email_2).exists():
-            t = Otp_Two.objects.filter(user_email=email_2)
-            t.delete()
-            print("OTP DELETED AND SENT AGAIN")
-        if User.objects.filter(email=email_2).exists():
-            messages.error(
-                request, 'The mail id already registered!')
-            return redirect('mail1')
-        elif Team.objects.filter(student_2_email=email_2).exists():
-            messages.error(
-                request, 'The Second mail id already exists with another team!')
-            return redirect('mail1')
-        elif Team.objects.filter(student_1_email=email_2).exists():
-            messages.error(
-                request, 'The Second mail id already exists with another team!')
-            return redirect('mail1')
-        email = Otp_Two.objects.create(
-            user_email=email_2, temp_email=request.user.email, otp=no)
-        email.save()
-        send_mail(
-            'YOUR OTP for verification',
-            'Your OTP is: {}'.format(no),
-            EMAIL_HOST_USER,
-            [email_2, ],
-            fail_silently=False,
-        )
+            no = randrange(1000, 9999)
+            # print("2nd MEMBER OTP IS: ", no)
+            if Otp_Two.objects.filter(user_email=email_2).exists():
+                t = Otp_Two.objects.filter(user_email=email_2)
+                t.delete()
+                print("OTP DELETED AND SENT AGAIN")
+            if User.objects.filter(email=email_2).exists():
+                messages.error(
+                    request, 'The mail id already registered!')
+                return redirect('mail1')
+            elif Team.objects.filter(student_2_email=email_2).exists():
+                messages.error(
+                    request, 'The Second mail id already exists with another team!')
+                return redirect('mail1')
+            elif Team.objects.filter(student_1_email=email_2).exists():
+                messages.error(
+                    request, 'The Second mail id already exists with another team!')
+                return redirect('mail1')
+            email = Otp_Two.objects.create(
+                user_email=email_2, temp_email=request.user.email, otp=no)
+            email.save()
+            send_mail(
+                'YOUR OTP for verification',
+                'Your OTP is: {}'.format(no),
+                EMAIL_HOST_USER,
+                [email_2, ],
+                fail_silently=False,
+            )
 
-        return redirect('verify1')
+            return redirect('verify1')
+        else:
+            user = request.user
+            context = {
+                'user': user,
+            }
+            return render(request, 'Register/mail1.html', context)
     else:
-        user = request.user
-        context = {
-            'user': user,
-        }
-        return render(request, 'Register/mail1.html', context)
+        messages.error(request, "You're not logged In!")
+        return ('login')
 
 
 def verify1(request):
-    if request.method == 'POST':
-        otp = request.POST['otp']
-        if Otp_Two.objects.filter(temp_email=request.user.email).exists():
-            g_otp = Otp_Two.objects.filter(
-                temp_email=request.user.email).first()
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            otp = request.POST['otp']
+            if Otp_Two.objects.filter(temp_email=request.user.email).exists():
+                g_otp = Otp_Two.objects.filter(
+                    temp_email=request.user.email).first()
+            else:
+                return render(request, 'Register/verify1.html')
+
+            if otp == g_otp.otp:
+                return redirect('project-details-2')
+            else:
+                render(request, 'Register/verify1.html')
         else:
             return render(request, 'Register/verify1.html')
-
-        if otp == g_otp.otp:
-            return redirect('project-details-2')
-        else:
-            render(request, 'Register/verify1.html')
     else:
-        return render(request, 'Register/verify1.html')
+        messages.error(request, "You're not logged In!")
+        return ('login')
 
 
 def project_details_1(request):
     guides = Guide.objects.order_by('serial_no')
     curr_user = request.user
-    if Team.objects.filter(teamID=curr_user.username).exists():
-        is_team = Team.objects.filter(teamID=curr_user.username).get()
-        guide_inst = Guide.objects.filter(serial_no=is_team.guide)
-        guide_inst.vacancy += 1
-        guide_inst.save()
-        is_team.delete()
-        is_user = User.objects.filter(username=is_team.teamID)
-        is_user.delete()
-        messages.info(
-            request, 'Your team is removed please to the process again!!')
-        return render(request, 'Register/register.html')
+    if curr_user.is_authenticated:
+        if Team.objects.filter(teamID=curr_user.username).exists():
+            is_team = Team.objects.filter(teamID=curr_user.username).get()
+            guide_inst = Guide.objects.filter(serial_no=is_team.guide)
+            guide_inst.vacancy += 1
+            guide_inst.save()
+            is_team.delete()
+            is_user = User.objects.filter(username=is_team.teamID)
+            is_user.delete()
+            messages.info(
+                request, 'Your team is removed please to the process again!!')
+            return render(request, 'Register/register.html')
 
-    if request.method == 'POST':
+        if request.method == 'POST':
 
-        project_name = request.POST['project_name']
-        project_domain = request.POST['project_domain']
-        project_description = request.POST['project_description']
-        reg_no_1 = request.POST['reg_no_1']
-        if len(reg_no_1) > 8:
-            messages.error(request, 'Register Number be 8 digits long.')
-            return redirect('project-details-1')
-        student_1_no = request.POST['student_1_no']
-        if len(student_1_no) > 10:
-            messages.error(request, 'Number must of 10 digits.')
-            return redirect('project-details-1')
+            project_name = request.POST['project_name']
+            project_domain = request.POST['project_domain']
+            project_description = request.POST['project_description']
+            reg_no_1 = request.POST['reg_no_1']
+            if len(reg_no_1) > 8:
+                messages.error(request, 'Register Number be 8 digits long.')
+                return redirect('project-details-1')
+            student_1_no = request.POST['student_1_no']
+            if len(student_1_no) > 10:
+                messages.error(request, 'Number must of 10 digits.')
+                return redirect('project-details-1')
 
-        student_1_name = curr_user.first_name + ' ' + curr_user.last_name
-        student_1_email = curr_user.email
+            student_1_name = curr_user.first_name + ' ' + curr_user.last_name
+            student_1_email = curr_user.email
 
-        user = User.objects.get(username=curr_user.username)
-        # print("TYPE OF user.id: ", type(user.id))
+            user = User.objects.get(username=curr_user.username)
+            # print("TYPE OF user.id: ", type(user.id))
 
-        if Temp_Team.objects.filter(student_1_email=curr_user.email).exists():
-            obj = Temp_Team.objects.filter(
-                student_1_email=curr_user.email).get()
-            obj.delete()
+            if Temp_Team.objects.filter(student_1_email=curr_user.email).exists():
+                obj = Temp_Team.objects.filter(
+                    student_1_email=curr_user.email).get()
+                obj.delete()
 
-        if Temp_Team.objects.filter(reg_no_1=reg_no_1).exists():
-            messages.error(
-                request, 'The Register Number already exists in another team.')
-            return redirect('project-details-1')
+            if Temp_Team.objects.filter(reg_no_1=reg_no_1).exists():
+                messages.error(
+                    request, 'The Register Number already exists in another team.')
+                return redirect('project-details-1')
 
-        temp_team = Temp_Team.objects.create(
-            project_name=project_name,
-            project_domain=project_domain,
-            project_description=project_description,
-            no_of_members='1', reg_no_1=reg_no_1,
-            student_1_name=student_1_name,
-            student_1_email=student_1_email,
-            student_1_no=student_1_no
-        )
-        # print('temp_team: ', temp_team.project_name)
-        temp_team.save()
+            temp_team = Temp_Team.objects.create(
+                project_name=project_name,
+                project_domain=project_domain,
+                project_description=project_description,
+                no_of_members='1', reg_no_1=reg_no_1,
+                student_1_name=student_1_name,
+                student_1_email=student_1_email,
+                student_1_no=student_1_no
+            )
+            # print('temp_team: ', temp_team.project_name)
+            temp_team.save()
 
-        context = {
-            'user': curr_user,
-            'guides': guides,
-        }
+            context = {
+                'user': curr_user,
+                'guides': guides,
+            }
 
-        return render(request, 'GuideList/guide.html', context)
+            return render(request, 'GuideList/guide.html', context)
+        else:
+            context = {
+                'user': curr_user
+            }
+            return render(request, '1_project_form/1_project_form.html', context)
     else:
-        context = {
-            'user': curr_user
-        }
-        return render(request, '1_project_form/1_project_form.html', context)
+        messages.error(request, "You're not logged In!")
+        return ('login')
 
 
 def project_details_2(request):
     curr_user = request.user
     guides = Guide.objects.order_by('serial_no')
-    student_2_email = Otp_Two.objects.filter(
-        temp_email=curr_user.email).first()
+    if curr_user.is_authenticated:
+        student_2_email = Otp_Two.objects.filter(
+            temp_email=curr_user.email).first()
 
-    if Team.objects.filter(teamID=curr_user.username).exists():
-        is_team = Team.objects.filter(teamID=curr_user.username).get()
-        is_team.delete()
-        is_user = User.objects.filter(username=is_team.teamID)
-        is_user.delete()
-        messages.info(
-            request, 'Your team is removed please do the process again!!')
-        return render(request, 'Login/login.html')
-    if request.method == 'POST':
+        if Team.objects.filter(teamID=curr_user.username).exists():
+            is_team = Team.objects.filter(teamID=curr_user.username).get()
+            is_team.delete()
+            is_user = User.objects.filter(username=is_team.teamID)
+            is_user.delete()
+            messages.info(
+                request, 'Your team is removed please do the process again!!')
+            return render(request, 'Login/login.html')
+        if request.method == 'POST':
 
-        project_name = request.POST['project_name']
-        project_domain = request.POST['project_domain']
-        project_description = request.POST['project_description']
-        reg_no_1 = request.POST['reg_no_1']
-        student_1_no = request.POST['student_1_no']
-        if len(reg_no_1) > 8:
-            messages.error(request, 'Register Number must be 8 digits long.')
-            return redirect('project-details-1')
-        student_1_no = request.POST['student_1_no']
-        if len(student_1_no) > 10:
-            messages.error(request, 'Number must contain 10 digits.')
-            return redirect('project-details-2')
+            project_name = request.POST['project_name']
+            project_domain = request.POST['project_domain']
+            project_description = request.POST['project_description']
+            reg_no_1 = request.POST['reg_no_1']
+            student_1_no = request.POST['student_1_no']
+            if len(reg_no_1) > 8:
+                messages.error(request, 'Register Number must be 8 digits long.')
+                return redirect('project-details-1')
+            student_1_no = request.POST['student_1_no']
+            if len(student_1_no) > 10:
+                messages.error(request, 'Number must contain 10 digits.')
+                return redirect('project-details-2')
 
-        student_1_name = curr_user.first_name + ' ' + curr_user.last_name
-        student_1_email = curr_user.email
+            student_1_name = curr_user.first_name + ' ' + curr_user.last_name
+            student_1_email = curr_user.email
 
-        first_name_2 = request.POST['first_name_2']
-        last_name_2 = request.POST['last_name_2']
-        reg_no_2 = request.POST['reg_no_2']
-        student_2_no = request.POST['student_2_no']
-        if len(reg_no_2) > 8:
-            messages.error(request, 'Register Number must be 8 digits long.')
-            return redirect('project-details-2')
-        student_2_no = request.POST['student_2_no']
-        if len(student_2_no) > 10:
-            messages.error(request, 'Number must contain 10 digits.')
-            return redirect('project-details-2')
+            first_name_2 = request.POST['first_name_2']
+            last_name_2 = request.POST['last_name_2']
+            reg_no_2 = request.POST['reg_no_2']
+            student_2_no = request.POST['student_2_no']
+            if len(reg_no_2) > 8:
+                messages.error(request, 'Register Number must be 8 digits long.')
+                return redirect('project-details-2')
+            student_2_no = request.POST['student_2_no']
+            if len(student_2_no) > 10:
+                messages.error(request, 'Number must contain 10 digits.')
+                return redirect('project-details-2')
 
-        student_2_name = first_name_2 + ' ' + last_name_2
+            student_2_name = first_name_2 + ' ' + last_name_2
 
-        user = User.objects.get(username=curr_user.username)
-        # print("TYPE OF user.id: ", type(user.id))
+            user = User.objects.get(username=curr_user.username)
+            # print("TYPE OF user.id: ", type(user.id))
 
-        if Team.objects.filter(reg_no_1=reg_no_1).exists():
-            messages.error(
-                request, '1st Register Number already exists in another team.')
-            return redirect('project-details-2')
-        elif Team.objects.filter(reg_no_2=reg_no_2).exists():
-            messages.error(
-                request, '2nd Register Number already exists in another team.')
-            return redirect('project-details-2')
+            if Team.objects.filter(reg_no_1=reg_no_1).exists():
+                messages.error(
+                    request, '1st Register Number already exists in another team.')
+                return redirect('project-details-2')
+            elif Team.objects.filter(reg_no_2=reg_no_2).exists():
+                messages.error(
+                    request, '2nd Register Number already exists in another team.')
+                return redirect('project-details-2')
 
-        if Team.objects.filter(student_1_no=student_1_no).exists():
-            messages.error(
-                request, '1st Phone Number already exists in another team.')
-            return redirect('project-details-2')
-        elif Team.objects.filter(student_2_no=student_2_no).exists():
-            messages.error(
-                request, '2nd Phone Number already exists in another team.')
-            return redirect('project-details-2')
+            if Team.objects.filter(student_1_no=student_1_no).exists():
+                messages.error(
+                    request, '1st Phone Number already exists in another team.')
+                return redirect('project-details-2')
+            elif Team.objects.filter(student_2_no=student_2_no).exists():
+                messages.error(
+                    request, '2nd Phone Number already exists in another team.')
+                return redirect('project-details-2')
 
-        if Temp_Team.objects.filter(student_1_email=curr_user.email).exists():
-            if Temp_Team.objects.filter(student_1_email=user.email).exists():
-                obj = Temp_Team.objects.filter(
-                    student_1_email=curr_user.email).get()
-                obj.delete()
+            if Temp_Team.objects.filter(student_1_email=curr_user.email).exists():
+                if Temp_Team.objects.filter(student_1_email=user.email).exists():
+                    obj = Temp_Team.objects.filter(
+                        student_1_email=curr_user.email).get()
+                    obj.delete()
 
-        temp_team = Temp_Team.objects.create(project_name=project_name, project_domain=project_domain, project_description=project_description, no_of_members='2', reg_no_1=reg_no_1,
-                                             student_1_name=student_1_name, student_1_email=student_1_email, student_1_no=student_1_no, reg_no_2=reg_no_2,  student_2_name=student_2_name, student_2_email=student_2_email.user_email, student_2_no=student_2_no)
+            temp_team = Temp_Team.objects.create(project_name=project_name, project_domain=project_domain, project_description=project_description, no_of_members='2', reg_no_1=reg_no_1,
+                                                student_1_name=student_1_name, student_1_email=student_1_email, student_1_no=student_1_no, reg_no_2=reg_no_2,  student_2_name=student_2_name, student_2_email=student_2_email.user_email, student_2_no=student_2_no)
 
-        temp_team.save()
+            temp_team.save()
 
-        context = {
-            'guides': guides,
-        }
+            context = {
+                'guides': guides,
+            }
 
-        return render(request, 'GuideList/guide.html', context)
+            return render(request, 'GuideList/guide.html', context)
+        else:
+            print('INSIDE GET REQUEST ELSE')
+            context = {
+                'email': student_2_email,
+                'user': curr_user,
+            }
+            return render(request, '2_project_form/2_project_form.html', context)
     else:
-        print('INSIDE GET REQUEST ELSE')
-        context = {
-            'email': student_2_email,
-            'user': curr_user,
-        }
-        return render(request, '2_project_form/2_project_form.html', context)
+        messages.error(request, "You're not logged In!")
+        return ('login')    
 
 
 def select_guide(request):
 
-    if request.user is None:
-
-        return HttpResponse('YOU ARE NOT ALLOWED HERE!')
+    if not request.user.is_authenticated:
+        messages.error(request, "You're not logged In!")
+        return ('login')
 
     guides = Guide.objects.order_by('serial_no')  # object
     if request.method == 'POST':
@@ -320,6 +336,9 @@ def select_guide(request):
 
 def temp_team_2(request):
     user = request.user
+    if not user.is_authenticated:
+        messages.error(request, "You're not logged In!")
+        return ('login')
     if request.method == 'POST':
         if Temp_Team.objects.filter(student_1_email=user.email).exists():
             temp_team = Temp_Team.objects.filter(
@@ -393,6 +412,9 @@ def temp_team_2(request):
 
 def temp_team_1(request):
     user = request.user
+    if not user.is_authenticated:
+        messages.error(request, "You're not logged In!")
+        return ('login')
     if request.method == 'POST':
         if Temp_Team.objects.filter(student_1_email=user.email).exists():
             temp_team = Temp_Team.objects.filter(
@@ -465,6 +487,9 @@ def guide_selected(request, id):
 
     guide_inst = Guide.objects.get(serial_no=id)
     user = request.user
+    if not user.is_authenticated:
+        messages.error(request, "You're not logged In!")
+        return ('login')
     # you can get teamID from username as both are same.
     try:
         temp_team = Temp_Team.objects.get(student_1_email=user.email)
@@ -551,6 +576,9 @@ def credits(request):
 
 
 def search(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "You're not logged In!")
+        return ('login')
     print("INSIDE SEARCH FUNCTION: ")
     queryset_list = Guide.objects.order_by('serial_no')
 

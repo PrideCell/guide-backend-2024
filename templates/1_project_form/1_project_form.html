@@ -30,7 +30,7 @@
                 <div class="project">
                     <div class="item">
                         <label for="name">Project Title(Less than 100 words)<span>*</span></label>
-                        <input id="name" type="text" name="project_name" placeholder="  Project title" required/>
+                        <input id="name" type="text" name="project_name" placeholder="  Project title" maxlength="100" required/>
                     </div>
                     <div class="item">
                         <label for="domain">Project Domain<span>*</span><p>(Ex: Machine Learning,Cloud Computing,Block Chain)</p></label>
@@ -57,17 +57,9 @@
                         <input id="name" type="text" name="first_name" placeholder="  First" value="{{ user.first_name }}" disabled/>
                         <input id="name" class="some" type="text" name="last_name" placeholder="  Last" value="{{ user.last_name }}" disabled/>
                         </div>
-                        <!-- <form action="">
-                            <label for="department" required>Department<span>*</span></label>
-                            <select name="department"  class="depart">
-                                <optgroup>
-                                    <option value="CSE" class="opt">CSE</option>
-                                </optgroup>
-                            </select>
-                        </form> -->
                         <div class="item">
                         <label for="regno">Register Number<span>*</span></label>
-                        <input id="regno" type="text" name="reg_no_1" placeholder="  Register Number" required/>
+                        <input id="regno" type="text" name="reg_no_1" placeholder="  Register Number" maxlength="8" required/>
                         </div>
                         <div class="item">
                         <label for="email">Email<span>*</span></label>
@@ -75,7 +67,7 @@
                         </div>
                         <div class="item">
                         <label for="phno">Phone Number<span>*</span></label>
-                        <input id="phno" type="text" name="student_1_no" placeholder="  Phone Number" required />
+                        <input id="phno" type="text" name="student_1_no" placeholder="  Phone Number" maxlength="10" required />
                         </div>
                     </fieldset>
                 </div>
