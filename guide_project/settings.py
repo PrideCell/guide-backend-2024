@@ -146,7 +146,7 @@ WSGI_APPLICATION = 'guide_project.wsgi.application'
 '''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'GUIDE-TEST',
+        'NAME': 'GUIDE-SELECTION',
         'USER': 'techboizs',
         'PASSWORD': 'AAd!tyAA$ravi',
         'HOST': 'localhost',
@@ -244,14 +244,15 @@ cloudinary.config(
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Email Configuration
-EMAIL_HOST = 'smtp.elasticemail.com'
+# EMAIL_HOST = 'smtp.elasticemail.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_FROM = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 DEFAULT_FROM_EMAIL = 'GUIDE PROJECT <guideproject2023@gmail.com>'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_USER = 'guideproject2023@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-# EMAIL_HOST_PASSWORD = 'rceddrndzxncxiuw'
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_USER = 'guideproject2023@gmail.com'
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = 'ofykzotalcvaulbm'
 EMAIL_USE_TLS = True
 
 LOGIN_URL = 'login'
