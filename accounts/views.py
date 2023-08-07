@@ -236,7 +236,7 @@ def password_reset(request):
     if request.method == 'POST':
         email_template_name = "registration/password_reset_email.html"
         email = request.POST['email']
-        teamID = request.POST['teamID']
+        # teamID = request.POST['teamID']
         subject = "RESET PASSWORD EMAIL"
         current_site = get_current_site(request)
         domain = current_site.domain
@@ -245,8 +245,8 @@ def password_reset(request):
         use_https = False
         if request.is_secure():
             use_https = True
-        if User.objects.filter(username=teamID).exists():
-            user = User.objects.filter(username=teamID).get()
+        if User.objects.filter(email=email).exists():
+            user = User.objects.filter(email=email).get()
             user.email = email
             context = {
                 "email": email,
