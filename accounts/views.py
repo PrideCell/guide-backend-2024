@@ -159,6 +159,7 @@ def login(request):
     if request.method == 'POST':
 
         user_name = request.POST['email']
+        user_name = user_name.strip()
         password = request.POST['password']
         if not User.objects.filter(username=user_name).exists():
             messages.error(request, "User does not exist!")
@@ -170,7 +171,7 @@ def login(request):
             print('User is: ', user)
             if user.is_staff == True:
                 return redirect('export')
-            if Guide.objects.filter(email=user_name).exists():
+            if Guide.objects.filter(email__iexact=user_name).exists():
                 auth.login(request, user)
                 return redirect('guide-profile')
             if user is not None:
