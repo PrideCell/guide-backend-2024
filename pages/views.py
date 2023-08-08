@@ -135,7 +135,7 @@ def verify1(request):
             else:
                 return redirect('mail1')
 
-            if otp == g_otp.otp:
+            if str(otp)== str(g_otp.otp):
                 return redirect('project-details-2')
             else:
                 messages.error(request, "Incorrect OTP try again")
