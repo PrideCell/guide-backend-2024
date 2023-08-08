@@ -131,14 +131,15 @@ def verify1(request):
             otp = request.POST['otp']
             if Otp_Two.objects.filter(temp_email=request.user.email).exists():
                 g_otp = Otp_Two.objects.filter(
-                    temp_email=request.user.email).first()
+                    temp_email=request.user.email).get()
             else:
-                return render(request, 'Register/verify1.html')
+                return redirect('mail1')
 
             if otp == g_otp.otp:
                 return redirect('project-details-2')
             else:
-                render(request, 'Register/verify1.html')
+                messages.error(request, "Incorrect OTP try again")
+                return redirect('mail1')
         else:
             return render(request, 'Register/verify1.html')
     else:
