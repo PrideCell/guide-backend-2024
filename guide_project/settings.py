@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bn!gb+_&96p0e7j+0@in%!o5xxl23m$907%3sgyqlekw&85sgv'
 # SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = os.environ.get('DEBUG')
-DEBUG = True
+DEBUG = False
 
 # DATABASE_URL = "postgresql://postgres:4M84u0U9dcm9LmdaH2Ar@containers-us-west-105.railway.app:5862/railway"
 
@@ -245,14 +245,16 @@ cloudinary.config(
 
 # Email Configuration
 # EMAIL_HOST = 'smtp.elasticemail.com'
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'email-smtp.ap-south-1.amazonaws.com'
 EMAIL_PORT = 587
 EMAIL_FROM = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 DEFAULT_FROM_EMAIL = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_USER = 'guideproject2023@gmail.com'
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_PASSWORD = 'rceddrndzxncxiuw'
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER_AWS')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_GMAIL')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_AWS')
+# EMAIL_HOST_PASSWORD = 'rceddrndzxncxiuw'
 EMAIL_USE_TLS = True
 
 LOGIN_URL = 'login'
