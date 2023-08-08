@@ -24,7 +24,7 @@ class GuideAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     ordering = ('serial_no',)
 
     resource_class = GuideResource
-    search_fields = ['serial_no', 'emp_id', 'name', 'email', 'vacancy']
+    search_fields = ['serial_no', 'emp_id', 'name', 'email', 'vacancy', 'myImage']
 
 
 class TeamResource(resources.ModelResource):
