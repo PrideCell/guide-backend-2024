@@ -245,8 +245,8 @@ cloudinary.config(
 
 # Email Configuration
 # EMAIL_HOST = 'smtp.elasticemail.com'
-# EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST = 'email-smtp.ap-south-1.amazonaws.com'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'email-smtp.ap-south-1.amazonaws.com'
 EMAIL_PORT = 587
 EMAIL_FROM = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 DEFAULT_FROM_EMAIL = 'GUIDE PROJECT <guideproject2023@gmail.com>'
