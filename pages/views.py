@@ -290,7 +290,6 @@ def project_details_2(request):
                 return redirect('project-details-2')
 
             if Temp_Team.objects.filter(student_1_email=curr_user.email).exists():
-                if Temp_Team.objects.filter(student_1_email=user.email).exists():
                     obj = Temp_Team.objects.filter(
                         student_1_email=curr_user.email).get()
                     obj.delete()
@@ -505,17 +504,22 @@ def guide_selected(request, id):
 
     if request.method == 'POST':
 
-        team = Team.objects.create(project_name=temp_team.project_name, project_domain=temp_team.project_domain, project_description=temp_team.project_description, no_of_members=temp_team.no_of_members, reg_no_1=temp_team.reg_no_1, student_1_name=temp_team.student_1_name,
-                                   student_1_email=temp_team.student_1_email, student_1_no=temp_team.student_1_no, reg_no_2=temp_team.reg_no_2, student_2_name=temp_team.student_2_name, student_2_email=temp_team.student_2_email, student_2_no=temp_team.student_2_no)
+        if Team.objects.filter(student_1_email=user.email).exists():
+            team = Team.objects.get(student_1_email=user.email)
+        else:
+            team = Team.objects.create(project_name=temp_team.project_name, project_domain=temp_team.project_domain, project_description=temp_team.project_description, no_of_members=temp_team.no_of_members, reg_no_1=temp_team.reg_no_1, student_1_name=temp_team.student_1_name,
+                                   student_1_email=temp_team.student_1_email, student_1_no=temp_team.student_1_no, reg_no_2=temp_team.reg_no_2, student_2_name=temp_team.student_2_name, student_2_email=temp_team.student_2_email, student_2_no=temp_team.student_2_no, guide=guide_inst.name, guide_email=guide_inst.email)
 
-        team.guide = guide_inst.name
-        team.guide_email = guide_inst.email
         new_username = "CSE-%03d" % (team.id)  # CSE-001, CSE-002, ....
         team.teamID = new_username
         user.username = new_username
+        obj.delete()
+        temp_team.delete()
+        team.save()
 
         if team.no_of_members == '2':
             if guide_inst.vacancy == 0:
+                messages.error(request, "Guide vacancy has become Zero(0)! Please chose another guide")
                 return HttpResponseRedirect('/select-guide/')
                 # return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
             user.save()
@@ -529,12 +533,10 @@ def guide_selected(request, id):
                 [user.email, team.student_2_email],
                 fail_silently=False,
             )
-            obj.delete()
-            temp_team.delete()
-            team.save()
 
         else:
             if guide_inst.vacancy == 0:
+                messages.error(request, "Guide vacancy has become Zero(0)! Please chose another guide")
                 return HttpResponseRedirect('/select-guide/')
                 # return HttpResponse('0 Vacancies for the selected Guide.Kindly chose another')
             user.save()
@@ -550,7 +552,6 @@ def guide_selected(request, id):
             )
             team.save()
             temp_team.delete()
-        # auth.logout(request)
         return redirect('team-dashboard')
         # return render(request, 'submitted.html')
     context = {
