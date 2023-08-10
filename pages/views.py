@@ -122,7 +122,7 @@ def mail1(request):
             return render(request, 'Register/mail1.html', context)
     else:
         messages.error(request, "You're not logged In!")
-        return ('login')
+        return redirect('login')
 
 
 def verify1(request):
@@ -144,7 +144,7 @@ def verify1(request):
             return render(request, 'Register/verify1.html')
     else:
         messages.error(request, "You're not logged In!")
-        return ('login')
+        return redirect('login')
 
 
 def project_details_1(request):
@@ -218,7 +218,7 @@ def project_details_1(request):
             return render(request, '1_project_form/1_project_form.html', context)
     else:
         messages.error(request, "You're not logged In!")
-        return ('login')
+        return redirect('login')
 
 
 def project_details_2(request):
@@ -313,14 +313,14 @@ def project_details_2(request):
             return render(request, '2_project_form/2_project_form.html', context)
     else:
         messages.error(request, "You're not logged In!")
-        return ('login')    
+        return redirect('login')    
 
 
 def select_guide(request):
 
     if not request.user.is_authenticated:
         messages.error(request, "You're not logged In!")
-        return ('login')
+        return redirect('login')
 
     guides = Guide.objects.order_by('serial_no')  # object
     if request.method == 'POST':
@@ -338,7 +338,7 @@ def temp_team_2(request):
     user = request.user
     if not user.is_authenticated:
         messages.error(request, "You're not logged In!")
-        return ('login')
+        return redirect('login')
     if request.method == 'POST':
         if Temp_Team.objects.filter(student_1_email=user.email).exists():
             temp_team = Temp_Team.objects.filter(
@@ -414,7 +414,7 @@ def temp_team_1(request):
     user = request.user
     if not user.is_authenticated:
         messages.error(request, "You're not logged In!")
-        return ('login')
+        return redirect('login')
     if request.method == 'POST':
         if Temp_Team.objects.filter(student_1_email=user.email).exists():
             temp_team = Temp_Team.objects.filter(
@@ -506,6 +506,8 @@ def guide_selected(request, id):
 
         if Team.objects.filter(student_1_email=user.email).exists():
             team = Team.objects.get(student_1_email=user.email)
+            team.guide = guide_inst.name
+            team.guide_email = guide_inst.email
         else:
             team = Team.objects.create(project_name=temp_team.project_name, project_domain=temp_team.project_domain, project_description=temp_team.project_description, no_of_members=temp_team.no_of_members, reg_no_1=temp_team.reg_no_1, student_1_name=temp_team.student_1_name,
                                    student_1_email=temp_team.student_1_email, student_1_no=temp_team.student_1_no, reg_no_2=temp_team.reg_no_2, student_2_name=temp_team.student_2_name, student_2_email=temp_team.student_2_email, student_2_no=temp_team.student_2_no, guide=guide_inst.name, guide_email=guide_inst.email)
@@ -580,7 +582,7 @@ def credits(request):
 def search(request):
     if not request.user.is_authenticated:
         messages.error(request, "You're not logged In!")
-        return ('login')
+        return redirect('login')
     print("INSIDE SEARCH FUNCTION: ")
     queryset_list = Guide.objects.order_by('serial_no')
 
