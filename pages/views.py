@@ -553,7 +553,7 @@ def guide_selected(request, id):
                 fail_silently=False,
             )
             team.save()
-            temp_team.delete()
+            # temp_team.delete()
         return redirect('team-dashboard')
         # return render(request, 'submitted.html')
     context = {

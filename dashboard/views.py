@@ -174,6 +174,16 @@ def update_profile_1(request, id):
             team.reg_no_1 = request.POST['reg_no_1']
         if request.POST['student_1_no']:
             team.student_1_no = request.POST['student_1_no']
+        
+        if request.POST.get('student_2_name'):
+            if request.POST['student_2_name']:
+              team.student_2_name = request.POST['student_2_name']
+            if request.POST['student_2_email']:
+                team.student_2_email = request.POST['student_2_email']
+            if request.POST['reg_no_2']:
+                team.reg_no_2 = request.POST['reg_no_2']
+            if request.POST['student_2_no']:
+                team.student_2_no = request.POST['student_2_no']
 
         team.save()
         return redirect('team-profile', team.teamID)
@@ -190,6 +200,8 @@ def update_profile_2(request, id):
             team.reg_no_2 = request.POST['reg_no_2']
         if request.POST['student_2_no']:
             team.student_2_no = request.POST['student_2_no']
+        
+        team.no_of_members = '2'
         team.save()
         return redirect('team-profile', team.teamID)
 

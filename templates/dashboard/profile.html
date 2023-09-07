@@ -130,6 +130,14 @@
                 </div>
             </div>
         </div>
+            <!-- Style this dropdown -->
+            <div>
+                <label for="dropdown">No. of Team Members</label>
+                <select name="no_of_members" id="dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
 
                 <div class="d-flex align-items">
 
@@ -270,69 +278,72 @@
                             <div class="col-md-15" id="web1">
                                 <div class="card text-center sidebar">
                                     <div class="card-body">
-                                        <h4>Student 2</h4>
-                                        <br>
-                                        <div class="d-flex align-items">
-                                            <div class="col-md-2">
-                                                <h5>Full Name</h5>
+                                        <form action="{% url 'update-profile-2' id=team.teamID %}" method="POST">
+                                            {% csrf_token %}
+                                            <h4>Student 2</h4>
+                                            <br>
+                                            <div class="d-flex align-items">
+                                                <div class="col-md-2">
+                                                    <h5>Full Name</h5>
+                                                </div>
+                                                <div class="col-md-8 text-secondary">
+                                                    <input type="text" class="form-control editField" name="student_2_name" value="N/A">
+                                                    <!-- readonly -->
+                                                </div>
                                             </div>
-                                            <div class="col-md-8 text-secondary">
-                                                <input type="text" class="form-control editField" value="N/A">
-                                                <!-- readonly -->
+                                            <hr>
+                                            <div class="d-flex align-items">
+                                                <div class="col-md-2">
+                                                    <h5>Email</h5>
+                                                </div>
+                                                <div class="col-md-8 text-secondary">
+                                                    <input type="text" class="form-control editField" name="student_2_email" value="N/A">
+                                                    <!-- readonly -->
+                                                </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex align-items">
-                                            <div class="col-md-2">
-                                                <h5>Email</h5>
+                                            <hr>
+                                            <div class="d-flex align-items">
+                                                <div class="col-md-2">
+                                                    <h5>Reg No</h5>
+                                                </div>
+                                                <div class="col-md-8 text-secondary">
+                                                    <input type="text" class="form-control editField" name="reg_no_2" value="N/A">
+                                                    <!-- readonly -->
+                                                </div>
                                             </div>
-                                            <div class="col-md-8 text-secondary">
-                                                <input type="text" class="form-control editField" value="N/A">
-                                                <!-- readonly -->
+                                            <hr>
+                                            <div class="d-flex align-items">
+                                                <div class="col-md-2">
+                                                    <h5>Mobile</h5>
+                                                </div>
+                                                <div class="col-md-8 text-secondary">
+                                                    <input type="text" class="form-control editField" name="student_2_no" value="N/A">
+                                                    <!-- readonly -->
+                                                </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex align-items">
-                                            <div class="col-md-2">
-                                                <h5>Reg No</h5>
+                                            <!-- <hr>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <h5>Address</h5>
+                                                </div>
+                                                <div class="col-md-9 text-secondary">
+                                                    <input type="text" class="form-control editField" value="Address" readonly>
+                                                </div>
+                                            </div> -->
+                                            <!-- <hr> -->
+                                            <!-- <a class="btn btn-danger editBtn">Edit Off</a> -->
+                                            <hr>
+                                            <div class="d2">
+                                                <a class="btn btn-danger editBtnd2" id="edit" onclick="enable()">Edit Off</a>
+                                            <!-- <a class="btn btn-success submit" id="save" disabled>Submit</a> -->
+                                                <input class="btn btn-success" type="submit" id="save2" value="Submit" disabled/>
                                             </div>
-                                            <div class="col-md-8 text-secondary">
-                                                <input type="text" class="form-control editField" value="N/A">
-                                                <!-- readonly -->
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex align-items">
-                                            <div class="col-md-2">
-                                                <h5>Mobile</h5>
-                                            </div>
-                                            <div class="col-md-8 text-secondary">
-                                                <input type="text" class="form-control editField" value="N/A">
-                                                <!-- readonly -->
-                                            </div>
-                                        </div>
-                                        <!-- <hr>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <h5>Address</h5>
-                                            </div>
-                                            <div class="col-md-9 text-secondary">
-                                                <input type="text" class="form-control editField" value="Address" readonly>
-                                            </div>
-                                        </div> -->
-                                        <!-- <hr> -->
-                                        <!-- <a class="btn btn-danger editBtn">Edit Off</a> -->
-                                        <hr>
-                                        <div class="d2">
-                                            <a class="btn btn-danger editBtnd2" id="edit" onclick="enable()">Edit Off</a>
-                                        <!-- <a class="btn btn-success submit" id="save" disabled>Submit</a> -->
-                                            <input class="btn btn-success" type="submit" id="save2" value="Submit" disabled/>
-                                        </div>
-                                        <!-- <div class="d2">
-                                            <a class="btn btn-danger editBtnd2" id="edit" onclick="enable()">Edit Off</a>
-                                        
-                                            <input class="btn btn-success" type="button" id="save2" value="Submit" disabled/>
-                                        </div> -->
+                                            <!-- <div class="d2">
+                                                <a class="btn btn-danger editBtnd2" id="edit" onclick="enable()">Edit Off</a>
+                                            
+                                                <input class="btn btn-success" type="button" id="save2" value="Submit" disabled/>
+                                            </div> -->
+                                        </form>
                                     </div>
                                 </div>
                             </div>

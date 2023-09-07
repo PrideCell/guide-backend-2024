@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bn!gb+_&96p0e7j+0@in%!o5xxl23m$907%3sgyqlekw&85sgv'
 # SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = os.environ.get('DEBUG')
-DEBUG = False
+DEBUG = True
 
 
 # DATABASE_URL = "postgresql://postgres:4M84u0U9dcm9LmdaH2Ar@containers-us-west-105.railway.app:5862/railway"
@@ -251,11 +251,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_FROM = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 DEFAULT_FROM_EMAIL = 'GUIDE PROJECT <guideproject2023@gmail.com>'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_USER = 'guideproject2023@gmail.com'
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER_AWS')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_GMAIL')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_AWS')
-# EMAIL_HOST_PASSWORD = 'rceddrndzxncxiuw'
+EMAIL_HOST_PASSWORD = 'rceddrndzxncxiuw'
 EMAIL_USE_TLS = True
 
 LOGIN_URL = 'login'
@@ -286,7 +287,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # AWS_STORAGE_BUCKET_NAME = 's3-django-test-bucket'
 # Logout On Closing
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
