@@ -1,63 +1,80 @@
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import pandas as pd
+import smtplib,os
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
-# Email parameters
+# Load data from Excel file
+data = pd.read_excel("mailing_peeps_left.xlsx")  # Replace "input.xlsx" with your file path
+
+# Email configuration
 smtp_server = "smtp.gmail.com"  # Your SMTP server
 smtp_port = 587  # Your SMTP port
 smtp_username = "guideproject2023@gmail.com"
+smtp_password = os.environ.get('EMAIL_HOST_PASSWORD_GMAIL')
 sender_email = "guideproject2023@gmail.com"
-sender_password = "ofykzotalcvaulbm"
-subject = "Guide Portal Status"
-message = f'''
-Hello Students,
-The Guide portal bugs have been fixed and has been made available for all globally. 
-Kindly, register your team if not done yet.
 
+# Create SMTP connection
+smtp = smtplib.SMTP(smtp_server, smtp_port)
+smtp.starttls()
+smtp.login(smtp_username, smtp_password)
+site_link = 'https://guide-portal-production.up.railway.app/accounts/login'
+# Send emails
+for index, row in data.iterrows():
+    subject = "Team Registration Confirmation"
+    team_id = row["teamID"]
+    
+    if str(row["no_of_members"])== '2':
+        recipients = [
+            row["student_1_email"], 
+            row["student_2_email"], 
+        ]
+        name_1 = row["student_1_name"]
+        name_2 = row["student_2_name"]
+        message = f'''Hello {name_1} and {name_2}!
+    You have been registered with the guide portal for your final year project. 
+    Your team ID is {team_id}.
+    Login to the portal {site_link}
+    Username : TeamID
+    Password : qWERTY123!@#
 
-Note:
-1) This mail is sent to team leads only (Typically, 1st member of team is considered lead)
-2) Kindly, read the rules mentioned on the pop-up when you click register on home page and then login.
-3) In case you're not receiving the OTP/verification link kindly for 5 minutes as server may get clogged up due to high requests.
-4) The team ID sent via mail will be applicable from next review onwards. For logging in to the portal use the teamID sent in mail and for rest of the cases consider Excel teamID as final for 1st review. 
-5) Any Queries kindly mail us with proper subject and body. Before sending us mail double check your process.
+    Kindly follow the points without fail and mail us incase of queries
+    1.Reset your password using the reset link which can be found in the portal
+    2.Some details currently associated with your team are mere placeholders.
+    3.Edit the project domain, description, phone numbers and any other details which seem inaccuarte.
+    
+
+    Regards  
+    Pride Cell
+    '''
+    else:
+        recipients = [row["student_1_email"],]
+        name_1 = row["student_1_name"]
+    
+        message = f'''Hello {name_1}!
+    You have been registered with the guide portal for your final year project. 
+    Your team ID is {team_id}.
+    Login to the portal {site_link}
+    Username : TeamID
+    Password : qWERTY123!@#
+
+    Kindly follow the points without fail and mail us incase of queries
+    1.Reset your password using the reset link which can be found in the portal
+    2.Some details currently associated with your team are mere placeholders.
+    3.Edit the project domain, description, phone numbers and any other details which seem inaccuarte.
+
+    Regards
+    Pride Cell
+
 '''
 
+    msg = MIMEMultipart()
+    msg["From"] = sender_email
+    msg["To"] = recipients[0]
+    msg["Subject"] = subject
+    msg.attach(MIMEText(message, "plain"))
 
+    smtp.sendmail(sender_email, recipients, msg.as_string())
+    print(f"Email sent to {name_1} ({recipients})")
+smtp.quit()
 
-excel_file = 'Team-2023-08-05.xls'
-df = pd.read_excel(excel_file)
-
-# Get the email addresses from the "student_1_email" column
-# recipients = df['student_1_email'].tolist()
-recipients = ['hariharanbp6@gmail.com', 'bphariharan1301@gmail.com']
-
-print('Type of recipients var: ', type(recipients))
-# for recipient in recipients:
-#     print(recipient)
-
-# Create the email message
-msg = MIMEMultipart()
-msg['From'] = sender_email
-# msg['To'] = ','.join(recipients)
-msg['Bcc'] = ','.join(recipients)
-msg['Subject'] = subject
-
-# Attach the message body
-msg.attach(MIMEText(message, 'plain'))
-
-# Connect to the SMTP server
-with smtplib.SMTP("smtp.gmail.com", 587) as server:
-    # Initiate TLS connection
-    server.starttls()
-
-    # Login to the sender's email account
-    server.login(sender_email, sender_password)
-
-    # Send the email
-    server.sendmail(sender_email, recipients, msg.as_string())
-    # server.sendmail(sender_email, 'hariharanbp6@gmail.com', msg.as_string())
-
-print("Email sent successfully")
 

@@ -182,4 +182,6 @@ cython_debug/
 cert.perm
 demo_video_test_cases.txt
 
+data
+
 .aws/credentials

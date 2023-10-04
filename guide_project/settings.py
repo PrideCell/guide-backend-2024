@@ -234,9 +234,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 cloudinary.config(
-    cloud_name="dzg5jildq",
-    api_key="321237999372576",
-    api_secret="5Gxrc6a6yZxY8QvQlsDPF-9TKnE",
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
     # upload_prefix="http://api.cloudinary.com",
 )
 
@@ -251,12 +251,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_FROM = 'GUIDE PROJECT <guideproject2023@gmail.com>'
 DEFAULT_FROM_EMAIL = 'GUIDE PROJECT <guideproject2023@gmail.com>'
-# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_USER = 'guideproject2023@gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER_AWS')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_GMAIL')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_AWS')
-EMAIL_HOST_PASSWORD = 'rceddrndzxncxiuw'
 EMAIL_USE_TLS = True
 
 LOGIN_URL = 'login'

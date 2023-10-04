@@ -79,8 +79,6 @@ def register(request):
         ConfirmPassword = request.POST['password2']
         temp = email.split('@')
         form = GuideSignUpForm(request.POST)
-        # print('Form is: ', form.data)
-        # print('Password: ', password)
         if temp[1] == 'gmail.com' or temp[1] == 'yahoo.in' or temp[1] == 'hotmail.com':
 
             if password == ConfirmPassword:
