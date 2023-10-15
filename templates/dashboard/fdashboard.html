@@ -268,7 +268,7 @@
                             {% csrf_token %}
                             <div class="txt_field" id="txt_f1">
                                 {% if team.review_2_marks %}
-                                    <input type="number" name="review_2_marks" min="1" max="5" value="{{ team.review_2_marks }}" >
+                                    <input type="number" name="review_2_marks" min="1" max="5" placeholder="{{ team.review_2_marks }}" >
                                 {% else %}
                                     <input type="number" name="review_2_marks" min="1" max="5">
                                 {% endif %}    
@@ -281,7 +281,7 @@
                             <div class="signup_link"></div> -->
                             <div class="txt_field" id="txt_f">
                                 {% if team.review_3_marks %}
-                                    <input type="number" name="review_3_marks" min="1" max="10" value="{{ team.review_3_marks }}" >
+                                    <input type="number" name="review_3_marks" min="1" max="10" placeholder="{{ team.review_3_marks }}" >
                                 {% else %}
                                     <input type="number" name="review_3_marks" min="1" max="10">
                                 {% endif %}

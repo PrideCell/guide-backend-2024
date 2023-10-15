@@ -88,7 +88,7 @@
                                     <img src="{% static 'img/profile.png' %}" alt="profile_picture">
                                 </div>
                                 <h3>{{ team.teamID }}</h3>
-                                <h4>{{ team.student_1_name }}</h4>
+                                <h4>{{ team.student_1_name }} {% if team.no_of_members == '2' %} & {{ team.student_2_name }} {% endif %}</h4>
                                 <p>{{ team.project_name }}</p>
                                 <!-- Redirect to fdashboard -->
                                 <a href="{% url 'guide-dashboard' team.teamID %}">
