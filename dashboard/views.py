@@ -135,11 +135,15 @@ def update_project(request, id):
 
         if request.POST.get('project_name'):
             print('inside project if')
+            inp_pd = request.POST['project_domain'].strip()
+            # print(inp_pd,len(inp_pd))
+            inp_dsc=request.POST['project_description'].strip()
+            # print(inp_dsc,len(inp_dsc))
             team.project_name = request.POST['project_name']
         if request.POST['project_domain']:
-            team.project_domain = request.POST['project_domain']
+            team.project_domain = inp_pd
         if request.POST['project_description']:
-            team.project_description = request.POST['project_description']
+            team.project_description = inp_dsc
         # if request.POST['student_1_name']:
 
         #     team.student_1_name = request.POST['student_1_name']

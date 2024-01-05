@@ -79,10 +79,8 @@
                                 </div>
                                 <div class="col-md-10 text-secondary">
                                     <input type="text" name="project_domain" class="form-control editField" 
-                                        value="{% if team.project_domain %} 
-                                                    {{ team.project_domain }} 
-                                                {% else %}
-                                                    PLEASE UPDATE YOUR PROJECT DOMAIN!
+                                        value="{% if team.project_domain %} {{ team.project_domain }} 
+                                                {% else %}PLEASE UPDATE YOUR PROJECT DOMAIN!
                                                 {% endif %}"
                                         readonly>
                                 </div>
@@ -111,15 +109,9 @@
                                     <h5>Project Description</h5>
                                 </div>
                                 <div class="col-md-30 text-secondary">
-                                    <textarea type="text" class="form-control editField" 
-                                    name="project_description" rows="4" cols="1000" id="tx" readonly>
-                                        {% if team.project_description %} 
-                                            {{ team.project_description }} 
-                                        {% else %}
-                                            PLEASE UPDATE YOUR PROJECT DESCRIPTION!
-                                        {% endif %}
-                                    </textarea>
+                                    <textarea type="text" class="form-control editField" name="project_description" rows="4" cols="1000" id="tx" readonly>{% if team.project_description %}{{ team.project_description }}{% else %}PLEASE UPDATE YOUR PROJECT DESCRIPTION!{% endif %}</textarea>
                                 </div>
+                                
                             </div>
                             <hr>
                             <a class="btn btn-danger editBtn" id="edit" onclick="enable()">Edit Off</a>
