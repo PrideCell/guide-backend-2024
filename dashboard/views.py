@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from pages.models import Guide, Team
 from django.contrib import messages
 from django.contrib import auth
+from datetime import datetime
+from .models import Log
 
 # Create your views here.
 
@@ -225,12 +227,18 @@ def profile_approve(request, id):
 
 def guide_approve(request, id):
     if request.method == 'POST':
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
         team = Team.objects.get(teamID=id)
         if request.POST['guide_approved'] == 'false':
             team.guide_approved = False
+            action = f"[{dt_string}] - Guide disapproval - team {team.teamID}"
         else:
+            
             team.guide_approved = True
+            action = f"[{dt_string}] - Guide approval given - team {team.teamID}"
         team.save()
+        Log.objects.create(team_id=id, action=action)
         return HttpResponse('Sucess')
         # return redirect(reverse_lazy('dashboard/fdashboard.html'))
 

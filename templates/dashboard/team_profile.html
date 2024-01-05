@@ -62,7 +62,7 @@
                             <h5>Project Domain</h5>
                         </div>
                         <div class="col-md-10 text-secondary">
-                            <input type="text" class="form-control editField" value="{{ team.project_domain }}" readonly>
+                            <input type="text" class="form-control editField" value="{{ team.project_domain.strip }}" readonly>
                         </div>
                     </div>
                     <!-- <hr>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-30 text-secondary">
                             <textarea type="text" class="form-control editField" rows="4" cols="1000" id="tx" readonly>
-                                {{ team.project_description }}
+                                {{ team.project_description.strip }}
                             </textarea>
                         </div>
                     </div>
