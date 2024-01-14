@@ -174,80 +174,31 @@
             <div class="right-container">
                 <div class="three">
                     <div class="account block"> 
-                        <h2 class="titular">GUIDE & PROJECT STATUS</h2>
-                        <p class="names">GUIDE APPROVAL</p>
-                            <label class="toggler-wrapper style-23">
-                                <!-- T or F -->
-                                {% if team.guide_approved %}
-                                    <input type="checkbox" class="check" id="approved-checkbox" checked> 
-                                {% else %}
-                                    <input  type="checkbox" id="approved-checkbox" > 
-                                    <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
-                                {% endif %}
-                                <div class="toggler-slider">
-                                <div class="toggler-knob"></div>
-                                </div>
-                            </label>
-                        <p class="names">RESEARCH PAPER</p>
-                        <label class="toggler-wrapper style-23">
-                            {% if team.rs_paper_approved %}
-                                <input type="checkbox" class="check" id="approved-rs" checked> 
-                            {% else %}
-                                <input  type="checkbox" id="approved-rs" > 
-                                    <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
-                            {% endif %}
-                            <div class="toggler-slider">
-                              <div class="toggler-knob"></div>
-                            </div>
-                        </label>
-                        <div class="form-check form-check-inline">
-                            {% if team.communicated %}
-                                <input class="form-check-input" type="checkbox" id="communicated-checkbox" value="option1" checked>
-                            {% else %}
-                                <input class="form-check-input" type="checkbox" id="communicated-checkbox" value="option1">
-                            {% endif %}
-                            <label class="form-check-label" for="inlineCheckbox1"> <strong>Communicated</strong></label>
+                        <h2 class="titular">PROJECT STATUS</h2>
+                    <p class="names">DOCUMENTATION</p>
+                    <label class="toggler-wrapper style-23">
+                        {% if team.docs_approved %}
+                        <input type="checkbox" class="check" id="approved-doc" checked> 
+                        {% else %}
+                        <input  type="checkbox" id="approved-doc" > 
+                        <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
+                        {% endif %}
+                        <div class="toggler-slider">
+                            <div class="toggler-knob"></div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            {% if team.accepted %}
-                                <input class="form-check-input" type="checkbox" id="accepted-checkbox" value="option2" checked>
-                            {% else %}
-                                <input class="form-check-input" type="checkbox" id="accepted-checkbox" value="option2">
-                            {% endif %}
-                            <label class="form-check-label" for="inlineCheckbox2"><strong>Accepted</strong></label>
+                    </label>
+                    <p class="names">PPT </p>
+                    <label class="toggler-wrapper style-23">
+                        {% if team.ppt_approved %}
+                        <input type="checkbox" class="check" id="approved-ppt" checked> 
+                        {% else %}
+                        <input  type="checkbox" id="approved-ppt" > 
+                        <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
+                        {% endif %}
+                        <div class="toggler-slider">
+                            <div class="toggler-knob"></div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            {% if team.payment_done %}
-                                <input class="form-check-input" type="checkbox" id="payment-checkbox" value="option3" checked>
-                            {% else %}
-                                <input class="form-check-input" type="checkbox" id="payment-checkbox" value="option3">
-                            {% endif %}
-                            <label class="form-check-label" for="inlineCheckbox3"><strong>Payment Done</strong></label>
-                        </div>
-                        <p class="names">DOCUMENTATION</p>
-                        <label class="toggler-wrapper style-23">
-                            {% if team.docs_approved %}
-                                <input type="checkbox" class="check" id="approved-doc" checked> 
-                            {% else %}
-                                <input  type="checkbox" id="approved-doc" > 
-                                    <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
-                            {% endif %}
-                            <div class="toggler-slider">
-                              <div class="toggler-knob"></div>
-                            </div>
-                        </label>
-                        <p class="names">PPT </p>
-                        <label class="toggler-wrapper style-23">
-                            {% if team.ppt_approved %}
-                                <input type="checkbox" class="check" id="approved-ppt" checked> 
-                            {% else %}
-                                <input  type="checkbox" id="approved-ppt" > 
-                                    <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
-                            {% endif %}
-                            <div class="toggler-slider">
-                              <div class="toggler-knob"></div>
-                            </div>
-                        </label>
+                    </label>
                     </div>
                 </div>
                 <div class="six">
@@ -296,6 +247,68 @@
                     </div>
                 </div>
             </div>
+            <div class="right-container">
+            <div class="three">
+                <div class="account block"> 
+                    <h2 class="titular">
+                        RESEARCH PAPER
+                    </h2>
+                    <label class="toggler-wrapper style-23">
+                        {% if team.rs_paper_approved %}
+                            <input type="checkbox" class="check" id="approved-rs" checked> 
+                        {% else %}
+                            <input  type="checkbox" id="approved-rs" > 
+                                <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
+                        {% endif %}
+                        <div class="toggler-slider">
+                          <div class="toggler-knob"></div>
+                        </div>
+                    </label>
+                    <div class="form-check form-check-inline">
+                        {% if team.communicated %}
+                            <input class="form-check-input" type="checkbox" id="communicated-checkbox" value="option1" checked>
+                        {% else %}
+                            <input class="form-check-input" type="checkbox" id="communicated-checkbox" value="option1">
+                        {% endif %}
+                        <label class="form-check-label" for="inlineCheckbox1"> <strong>Communicated</strong></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        {% if team.accepted %}
+                            <input class="form-check-input" type="checkbox" id="accepted-checkbox" value="option2" checked>
+                        {% else %}
+                            <input class="form-check-input" type="checkbox" id="accepted-checkbox" value="option2">
+                        {% endif %}
+                        <label class="form-check-label" for="inlineCheckbox2"><strong>Accepted</strong></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        {% if team.payment_done %}
+                            <input class="form-check-input" type="checkbox" id="payment-checkbox" value="option3" checked>
+                        {% else %}
+                            <input class="form-check-input" type="checkbox" id="payment-checkbox" value="option3">
+                        {% endif %}
+                        <label class="form-check-label" for="inlineCheckbox3"><strong>Payment Done</strong></label>
+                    </div>
+                </div>
+            </div>
+            <div class="six">
+                <div class="mark-status">
+                    <h2 class="titular">GUIDE</h2>
+                        <p class="names">GUIDE APPROVAL</p>
+                            <label class="toggler-wrapper style-23">
+                                <!-- T or F -->
+                                {% if team.guide_approved %}
+                                    <input type="checkbox" class="check" id="approved-checkbox" checked> 
+                                {% else %}
+                                    <input  type="checkbox" id="approved-checkbox" > 
+                                    <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
+                                {% endif %}
+                                <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                </div>
+            </div>
+        </div>
         </div>      
         </div>
     </div>  
