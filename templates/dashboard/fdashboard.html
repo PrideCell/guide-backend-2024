@@ -219,11 +219,11 @@
                             {% csrf_token %}
                             <div class="txt_field" id="txt_f1">
                                 {% if team.review_2_marks %}
-                                    <input type="number" name="review_2_marks" min="1" max="5" placeholder="{{ team.review_2_marks }}" value="0" >
+                                    <input type="number" name="review_2_marks" min="1" max="15" placeholder="{{ team.review_2_marks }}" value="0" >
                                 {% else %}
-                                    <input type="number" name="review_2_marks" min="1" max="5" value="0">
+                                    <input type="number" name="review_2_marks" min="1" max="15" value="0">
                                 {% endif %}    
-                                <label>Enter marks(for review II) (Out of 5)</label> 
+                                <label>Enter marks(for review II) (Out of 15)</label> 
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;" >Post</button>
                             </div>
