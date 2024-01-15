@@ -215,7 +215,7 @@
                             </form>
                         </div> -->
                         {% include 'partials/_alerts.html' %}
-                        <form action="{% url 'guide-dashboard' teamID=team.teamID %}" method="POST" >
+                        <form action="{% url 'guide-dashboard' teamID=team.teamID %}" method="POST" style="margin-top: 4.5rem;">
                             {% csrf_token %}
                             <div class="txt_field" id="txt_f1">
                                 {% if team.review_2_marks %}
@@ -225,24 +225,8 @@
                                 {% endif %}    
                                 <label>Enter marks(for review II) (Out of 5)</label> 
                                 <br>
-                                <button type="submit" class="btn btn-primary" style="margin-top: 0.2rem;" >Post</button>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;" >Post</button>
                             </div>
-                            <!-- <br>
-                            <input type="submit" value="Submit">
-                            <div class="signup_link"></div> -->
-                            <div class="txt_field" id="txt_f">
-                                {% if team.review_3_marks %}
-                                    <input type="number" name="review_3_marks" min="1" max="10" placeholder="{{ team.review_3_marks }}" value="0">
-                                {% else %}
-                                    <input type="number" name="review_3_marks" min="1" max="10" value="0">
-                                {% endif %}
-                                <label>Enter marks(for review III) (Out of 10)</label>
-                                <br>
-                                <button type="submit" class="btn btn-primary" style="margin-top: 0.2rem;" >Post</button>
-                            </div>
-                            <!-- <br>
-                            <input type="submit" value="Submit">
-                            <div class="signup_link"></div> -->
                         </form>
                     </div>
                 </div>
@@ -292,8 +276,7 @@
             </div>
             <div class="six">
                 <div class="mark-status">
-                    <h2 class="titular">GUIDE</h2>
-                        <p class="names">GUIDE APPROVAL</p>
+                    <h2 class="titular">GUIDE APPROVAL</h2>
                             <label class="toggler-wrapper style-23">
                                 <!-- T or F -->
                                 {% if team.guide_approved %}
