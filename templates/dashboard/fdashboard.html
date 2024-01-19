@@ -217,15 +217,15 @@
                         {% include 'partials/_alerts.html' %}
                         <form action="{% url 'guide-dashboard' teamID=team.teamID %}" method="POST" style="margin-top: 4.5rem;">
                             {% csrf_token %}
-                            <div class="txt_field" id="txt_f1">
+                            <div class="txt_field" id="txt_f1" style="border-bottom: none;">
                                 {% if team.review_2_marks %}
-                                    <input type="number" name="review_2_marks" min="1" max="15" placeholder="{{ team.review_2_marks }}" value="0" >
+                                    <input type="number" name="review_2_marks" placeholder="{{ team.review_2_marks }}" value="0" style="margin-left: -125px; width: 80px; border-bottom: 2px solid #adadad;">
                                 {% else %}
-                                    <input type="number" name="review_2_marks" min="1" max="15" value="0">
+                                    <input type="number" name="review_2_marks" value="0" style="margin-left: -125px; width: 80px; border-bottom: 2px solid #adadad;">
                                 {% endif %}    
-                                <label>Enter marks(for review II) (Out of 15)</label> 
+                                <label>Enter marks (Out of 15)</label> 
                                 <br>
-                                <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;" >Post</button>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;" >Submit</button>
                             </div>
                         </form>
                     </div>
@@ -237,7 +237,7 @@
                     <h2 class="titular">
                         RESEARCH PAPER
                     </h2>
-                    <label class="toggler-wrapper style-23">
+                    <label class="toggler-wrapper style-23" style="margin-top: 70px;">
                         {% if team.rs_paper_approved %}
                             <input type="checkbox" class="check" id="approved-rs" checked> 
                         {% else %}
@@ -277,18 +277,18 @@
             <div class="six">
                 <div class="mark-status">
                     <h2 class="titular">GUIDE APPROVAL</h2>
-                            <label class="toggler-wrapper style-23">
-                                <!-- T or F -->
-                                {% if team.guide_approved %}
-                                    <input type="checkbox" class="check" id="approved-checkbox" checked> 
-                                {% else %}
-                                    <input  type="checkbox" id="approved-checkbox" > 
-                                    <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
-                                {% endif %}
-                                <div class="toggler-slider">
-                                <div class="toggler-knob"></div>
-                                </div>
-                            </label>
+                    <label class="toggler-wrapper style-23" style="margin-top: 70px;">
+                        <!-- T or F -->
+                        {% if team.guide_approved %}
+                            <input type="checkbox" class="check" id="approved-checkbox" checked> 
+                        {% else %}
+                            <input  type="checkbox" id="approved-checkbox" > 
+                            <!-- <input  type="checkbox" id="re-approved-checkbox" >  -->
+                        {% endif %}
+                        <div class="toggler-slider">
+                        <div class="toggler-knob"></div>
+                        </div>
+                    </label>
                 </div>
             </div>
         </div>
