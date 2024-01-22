@@ -37,7 +37,7 @@ class TeamResource(resources.ModelResource):
 
 class TeamAdmin(ImportExportModelAdmin):
     list_display = ('id', 'teamID', 'project_name', 'no_of_members', 'reg_no_1',
-                    'student_1_name', 'student_1_no', 'reg_no_2', 'student_2_name', 'student_2_no', 'guide', 'guide_email', 'profile_approved', 'guide_approved', 'rs_paper_approved', 'docs_approved', 'ppt_approved', 'review_2_marks', 'review_3_marks')
+                    'student_1_name', 'student_1_no', 'reg_no_2', 'student_2_name', 'student_2_no', 'guide', 'guide_email', 'profile_approved', 'guide_approved', 'rs_paper_approved', 'docs_approved', 'ppt_approved', 'review_2_marks', 'review_3_marks', 'student_1_marks', 'student_2_marks')
     ordering = ('teamID',)
     search_fields = ('teamID', 'reg_no_1', 'reg_no_2',
                      'project_name', 'project_domain', 'student_1_name', 'student_2_name', 'guide', 'guide_email')

@@ -19,7 +19,9 @@ def guide_dashboard(request, teamID):
     user = request.user
     team = Team.objects.filter(teamID=teamID).get()
     if request.method == 'POST':
-        if request.POST['review_2_marks']:
+        # Commented as not required 
+        # ******* DO UNCOMMENT IT IF REVIEW 2 and 3 MARKS NEEDED TO BE ADDED ******
+        '''if request.POST['review_2_marks']:
             review_2_marks = request.POST['review_2_marks']
             if int(review_2_marks) > 5:
                 messages.error(
@@ -33,7 +35,23 @@ def guide_dashboard(request, teamID):
                     request, "Marks must be less than or equal to 10!")
                 return redirect('guide-dashboard', teamID)
 
-            team.review_3_marks = review_3_marks
+            team.review_3_marks = review_3_marks'''
+
+        if request.POST['student_1_marks']:
+            student_1_marks = request.POST['student_1_marks']
+            if int(student_1_marks) > 15:
+                messages.error(
+                    request, "Marks must be less than or equal to 15!")
+                return redirect('guide-dashboard', teamID)
+            team.student_1_marks = student_1_marks
+            
+        if request.POST['student_2_marks']:
+            student_2_marks = request.POST['student_2_marks']
+            if int(student_2_marks) > 15:
+                messages.error(
+                    request, "Marks must be less than or equal to 15!")
+                return redirect('guide-dashboard', teamID)
+            team.student_2_marks = student_2_marks
 
         team.save()
         messages.success(request, "Marks Updated Successfully!")

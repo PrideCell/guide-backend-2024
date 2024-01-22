@@ -111,6 +111,9 @@ class Team(models.Model):
     review_2_marks = models.IntegerField(default=10)
     review_3_marks = models.IntegerField(default=10)
 
+    student_1_marks = models.IntegerField(default=0)
+    student_2_marks = models.IntegerField(default=0)
+
     communicated = models.BooleanField(default=False)
     accepted = models.BooleanField(default=False)
     payment_done = models.BooleanField(default=False)
