@@ -215,18 +215,28 @@
                             </form>
                         </div> -->
                         {% include 'partials/_alerts.html' %}
-                        <form action="{% url 'guide-dashboard' teamID=team.teamID %}" method="POST" style="margin-top: 4.5rem;">
+                        <form action="{% url 'guide-dashboard' teamID=team.teamID %}" method="POST" style="margin-top: 2.5rem;">
                             {% csrf_token %}
                             <div class="txt_field" id="txt_f1" style="border-bottom: none;">
                                 {% if team.review_2_marks %}
-                                    <input type="number" name="review_2_marks" placeholder="{{ team.review_2_marks }}" value="0" style="margin-left: -125px; width: 80px; border-bottom: 2px solid #adadad;">
+                                    <input type="number" name="review_2_marks" placeholder="{{ team.review_2_marks }}" value="0" style="margin-left: -125px; margin-top: 10px; width: 80px; border-bottom: 2px solid #adadad; text-align: center;">
                                 {% else %}
-                                    <input type="number" name="review_2_marks" value="0" style="margin-left: -125px; width: 80px; border-bottom: 2px solid #adadad;">
+                                    <input type="number" name="review_2_marks" value="0" style="margin-left: -125px; margin-top: 10px; width: 80px; border-bottom: 2px solid #adadad; text-align: center;">
                                 {% endif %}    
-                                <label>Enter marks (Out of 15)</label> 
+                                <label style="text-align: left;">Student 1: ( Name - Reg No)<br />Enter marks (Out of 15)</label> 
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;" >Submit</button>
                             </div>
+                            <!-- <div class="txt_field" id="txt_f" style="margin-top: 30px; border-bottom: none;">
+                                {% if team.review_3_marks %}
+                                    <input type="number" name="review_3_marks" placeholder="{{ team.review_3_marks }}" value="0" style="margin-left: -125px; margin-top: 10px; width: 80px; border-bottom: 2px solid #adadad; text-align: center;">
+                                {% else %}
+                                    <input type="number" name="review_3_marks" value="0" style="margin-left: -125px; margin-top: 10px; width: 80px; border-bottom: 2px solid #adadad; text-align: center;">
+                                {% endif %}
+                                <label style="text-align: left;">Student 2: ( Name - Reg No)<br />Enter marks (Out of 15)</label>
+                                <br>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;" >Submit</button>
+                            </div> -->
                         </form>
                     </div>
                 </div>
