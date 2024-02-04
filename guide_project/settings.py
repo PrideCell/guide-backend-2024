@@ -172,8 +172,8 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'qgIacOVZWyoeqPOXpeT5',
-        'HOST': 'containers-us-west-116.railway.app',
-        'PORT': '7613',
+        'HOST': 'iaduct.proxy.rlwy.net',
+        'PORT': '57835',
     }
 }
 
