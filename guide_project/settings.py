@@ -158,14 +158,13 @@ WSGI_APPLICATION = 'guide_project.wsgi.application'
 
 # Production DB to be used for railway personal
 
-DATABASE_URL = "postgresql://postgres:Sw4rMcYObFabLSxPEEq3@containers-us-west-170.railway.app:6238/railway"
 
-# DATABASES = {
-#     "default": dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=None),
-# }
+DATABASES = {
+    "default": dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=None),
+}
 '''DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=None),
-}'''
+}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -176,7 +175,7 @@ DATABASES = {
         'PORT': os.environ.get('PGPORT'),
     }
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
