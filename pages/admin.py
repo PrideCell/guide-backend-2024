@@ -32,7 +32,7 @@ class TeamResource(resources.ModelResource):
         model = Team
 
         fields = ('id', 'teamID', 'project_name', 'project_domain', 'project_description', 'no_of_members', 'reg_no_1',
-                  'student_1_name', 'student_1_email', 'student_1_no', 'reg_no_2', 'student_2_name', 'student_2_email', 'student_2_no', 'guide', 'guide_email', 'profile_approved', 'guide_approved', 'rs_paper_approved', 'docs_approved', 'ppt_approved', 'review_2_marks', 'review_3_marks', 'communicated', 'accepted', 'payment_done', 'document', 'ppt', 'rs_paper', 'guide_form', 'type')
+                  'student_1_name', 'student_1_email', 'student_1_no', 'reg_no_2', 'student_2_name', 'student_2_email', 'student_2_no', 'guide', 'guide_email', 'profile_approved', 'guide_approved', 'rs_paper_approved', 'docs_approved', 'ppt_approved', 'review_2_marks', 'review_3_marks', 'communicated', 'accepted', 'payment_done', 'document', 'ppt', 'rs_paper', 'guide_form', 'type', 'student_1_marks', 'student_2_marks')
 
 
 class TeamAdmin(ImportExportModelAdmin):
